@@ -31,6 +31,8 @@ public class DrinksController {
             return drinksRepository.findByTypeContainingIgnoreCaseOrNameContainingIgnoreCase(str,str);
         }
     }
+
+
     @PostMapping
     public ResponseEntity<Object> createDrink(@Valid @RequestBody Drinks drinks) {
         Optional<Drinks> result= drinksRepository.findById(drinks.getId());

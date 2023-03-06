@@ -2,6 +2,7 @@ package Erdison.Dosti.Ristorante.Controller;
 
 
 import Erdison.Dosti.Ristorante.DTO.OrderDTO;
+import Erdison.Dosti.Ristorante.Entity.Drinks;
 import Erdison.Dosti.Ristorante.Entity.Foods;
 import Erdison.Dosti.Ristorante.Entity.Orders;
 import Erdison.Dosti.Ristorante.Entity.Tables;
@@ -10,6 +11,7 @@ import Erdison.Dosti.Ristorante.Repository.FoodsRepository;
 import Erdison.Dosti.Ristorante.Repository.OrderRepository;
 import Erdison.Dosti.Ristorante.Repository.TableRepository;
 import jakarta.persistence.Table;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +41,23 @@ public class OrderController {
     @GetMapping
     public List<Orders> getAll() {
         return orderRepository.findAll();
+    }
+
+    @GetMapping
+    public List<Orders> getOrderssByispayed(@RequestParam (name="flag",required = false)boolean str) {
+        List<Orders> result = orderRepository.findAll();
+        List<Orders> ordersList= new ArrayList<>();
+        if (result.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ("Orders not found"));
+        } else {
+            for (Orders order : result) {
+                if (order.isPayed() == str) {
+                    ordersList.add(order);
+                 
+                }
+            }
+            return ordersList;
+        }
     }
 
     @PostMapping("/table/{id}")

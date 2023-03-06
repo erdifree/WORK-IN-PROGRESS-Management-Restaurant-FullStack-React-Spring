@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Orders,Integer> {
     List<Orders> findByLocalDate(LocalDate date);
+    List<Orders> findByIsPayed(boolean flag);
+
 }
