@@ -3,12 +3,14 @@ import { Route, Routes } from "react-router-dom";
 import { Homepage } from "./pages/Homepage";
 import { TablePage } from "./pages/TablePage";
 import { Admin } from "./pages/Admin";
-import { OrderCategory } from "./components/category/Menu";
+import { Menu } from "./components/category/Menu";
 import { Category } from "./pages/Category";
 import { useState } from "react";
 import Cart from "./components/Cart";
 import { Login } from "./pages/LoginPage";
 import { OrderPage } from "./pages/OrderPage";
+import { OrderCategory } from "./components/category/OrderCategory";
+
 
 const App = () => {
   const [cartProducts, setCartProducts] = useState([]);
@@ -66,11 +68,11 @@ const App = () => {
         <Route path="/log-in" element={<Login />} />
         <Route path="/table" element={<TablePage />} />
         <Route path="/admin" element={<Admin />} />
-        <Route path="/order" element={<OrderPage />} />
+        <Route path="/order" element={<OrderCategory />} />
         <Route
           path="/table/:tableId/"
           element={
-            <OrderCategory
+            <Menu
               add={handleAddClick}
               del={handleDeleteClick}
               cartProducts={cartProducts}

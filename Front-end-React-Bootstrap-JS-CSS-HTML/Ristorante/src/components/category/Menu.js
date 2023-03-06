@@ -18,7 +18,7 @@ import Secondo from "../img/Secondo.jpg";
 import Bevande from "../img/Bevande.jpg";
 import Dessert from "../img/dessert.jpg";
 import Cart from "../Cart";
-export const OrderCategory = ({ edit, add, del, cartProducts, reset }) => {
+export const Menu = ({ edit, add, del, cartProducts, reset }) => {
   const { tableId } = useParams();
   const navigate = useNavigate();
 

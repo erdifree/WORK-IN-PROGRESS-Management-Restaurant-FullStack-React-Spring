@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 
 import { Offcanvas } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
-import Img from "../img/logonav.avif";
+import Img from "./img/logonav.avif";
 import { AiFillSetting } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";

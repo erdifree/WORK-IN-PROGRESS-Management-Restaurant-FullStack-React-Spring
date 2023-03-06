@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { OrderList } from "../components/OrderList";
-import "../css/style.css";
+import "../components/css/style.css";
 import { Sidebar } from "../components/Sidebar";
 import Container from "react-bootstrap/Container";
 import { Col, Row } from "react-bootstrap";

@@ -6,7 +6,7 @@ import {
   BsClipboardX,
 } from "react-icons/bs";
 import { OrderList } from "./OrderList";
-import imgTavolo from "../img/tavolo.avif"
+import imgTavolo from "./img/tavolo.avif"
 import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -21,12 +21,6 @@ export const Table = ({ table }) => {
           <div>{table.seats}</div>
         </Card.Body>
         <Card.Footer>
-          <Button variant="light">
-            <BsFillTrashFill />
-          </Button>
-          <Button variant="light">
-            <BsPencilFill />
-          </Button>
         </Card.Footer>
       </Card>
     </Link>
