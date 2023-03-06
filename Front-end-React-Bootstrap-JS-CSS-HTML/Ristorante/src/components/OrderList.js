@@ -1,6 +1,7 @@
 import {Order} from "./Order";
 import { Row, Col } from "react-bootstrap";
 export const OrderList = ({ data = [] }) => {
+  console.log("Sono orderrrrr", data);
   return (
     <>
       <Row className="gy-3">

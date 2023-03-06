@@ -37,10 +37,12 @@ export const Sidebar = () => {
               </Button>
             </Col>
             <Col sx={12} className="mt-5">
-              <Button>
-                <AiFillSetting />
-                Cassa
-              </Button>
+              <Link to="/managmentPaymentPage">
+                <Button>
+                  <AiFillSetting />
+                  Cassa
+                </Button>
+              </Link>
             </Col>
 
             <Col sx={12} className="mt-5">

@@ -6,10 +6,11 @@ import { Admin } from "./pages/Admin";
 import { Menu } from "./components/category/Menu";
 import { Category } from "./pages/Category";
 import { useState } from "react";
-import Cart from "./components/Cart";
 import { Login } from "./pages/LoginPage";
 import { OrderPage } from "./pages/OrderPage";
 import { OrderCategory } from "./components/category/OrderCategory";
+import { ManagmentPaymentPage } from "./pages/ManagmentPaymentPage";
+
 
 
 const App = () => {
@@ -66,6 +67,11 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/log-in" element={<Login />} />
+        <Route path="/order/:payed" element={<OrderPage />} />
+        <Route
+          path="/managmentPaymentPage"
+          element={<ManagmentPaymentPage />}
+        />
         <Route path="/table" element={<TablePage />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/order" element={<OrderCategory />} />

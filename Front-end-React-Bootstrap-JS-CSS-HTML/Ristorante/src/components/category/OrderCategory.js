@@ -8,7 +8,7 @@ export const OrderCategory = () => {
         <Row className=" d-flex justify-content-end">
           <Col xs={12} md={6} lg={4}>
             <Link
-              to={`/table/primo`}
+              to="/managmentPaymentPage"
               className=" text-decoration-none text-reset text-center"
             >
               <Card style={{ width: "18rem" }} className="my-5">
@@ -21,7 +21,7 @@ export const OrderCategory = () => {
           </Col>
           <Col xs={12} md={6} lg={4}>
             <Link
-              to={`/table/secondo`}
+              to={`/order/${true}`}
               className=" text-decoration-none text-reset text-center"
             >
               <Card style={{ width: "18rem" }} className="my-5">

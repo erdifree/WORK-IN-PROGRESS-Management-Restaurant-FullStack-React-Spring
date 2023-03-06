@@ -10,9 +10,11 @@ export const geTable = async () => {
   }
 };
 
-export const getOrder = async () => {
+export const getOrder = async (type) => {
   try {
-    const response = await fetch(BASE_URL_USERS + "/orders");
+    const response = await fetch(
+      BASE_URL_USERS + "/orders/ispayed?flag=" + type
+    );
     const data = await response.json();
     return { ok: response.ok, data: data };
   } catch (error) {
