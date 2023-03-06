@@ -43,7 +43,7 @@ public class OrderController {
         return orderRepository.findAll();
     }
 
-    @GetMapping
+    @GetMapping("/ispayed")
     public List<Orders> getOrderssByispayed(@RequestParam (name="flag",required = false)boolean str) {
         List<Orders> result = orderRepository.findAll();
         List<Orders> ordersList= new ArrayList<>();
