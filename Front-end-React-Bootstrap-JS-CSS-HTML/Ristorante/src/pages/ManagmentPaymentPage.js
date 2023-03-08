@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { getOrder } from "../api";
 import { OrderList } from "../components/OrderList";
 import { Sidebar } from "../components/Sidebar";
+import { Button } from "react-bootstrap";
+import { ModalOrder } from "../components/ModalOrder";
+import Row from "react-bootstrap";
+import Col from "react-bootstrap";
+
 
 export const ManagmentPaymentPage = () => {
   const [data, setData] = useState([]);
@@ -16,10 +20,20 @@ export const ManagmentPaymentPage = () => {
     loadOrders();
   }, []);
 
+  
+
   return (
     <>
       <Sidebar />
-      <OrderList data={data} />
+
+      <OrderList
+        data={data}
+        order={
+          <Button>
+            <ModalOrder />
+          </Button>
+        }
+      />
     </>
   );
 };

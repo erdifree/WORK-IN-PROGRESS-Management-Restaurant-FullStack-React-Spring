@@ -1,13 +1,12 @@
 
-.logo {
-  background-image: url("../img//Homepageristorant.jpg");
-    background-position: center;
-  
-    background-size: cover;
-    background-repeat: no-repeat;
-    height:1000px;
+
+
+body{
+    background-image: url("../img//Homepageristorant.jpg");
+    background-repeat: no-repeat; 
     background-attachment: fixed;
-  margin-top: 0;
+    background-position: center;
+    background-size: cover;
 }
 
 .sidebar {

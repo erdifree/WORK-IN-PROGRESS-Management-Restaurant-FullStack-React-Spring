@@ -13,15 +13,16 @@ import { Link } from "react-router-dom";
 export const Table = ({ table }) => {
   console.log("sono il tavolo", table);
   return (
-    <Link to={`/table/${table.id}`}>
+    <Link
+      to={`/table/${table.id}`}
+      className=" text-decoration-none text-reset text-center"
+    >
       <Card className="c_task" style={{ width: "18rem" }}>
         <Card.Img variant="top" src={imgTavolo} />
         <Card.Body>
           <div>{table.name}</div>
-          <div>{table.seats}</div>
         </Card.Body>
-        <Card.Footer>
-        </Card.Footer>
+        <Card.Footer></Card.Footer>
       </Card>
     </Link>
   );

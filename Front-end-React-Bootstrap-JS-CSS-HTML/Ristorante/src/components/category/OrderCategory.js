@@ -3,40 +3,40 @@ import { Link } from "react-router-dom";
 import { Sidebar } from "../Sidebar";
 export const OrderCategory = () => {
   return (
-    <Row className=" d-flex  justify-content-between justify-content-evenly flex-wrap ">
-      <Col lg={10}>
-        <Row className=" d-flex justify-content-end">
-          <Col xs={12} md={6} lg={4}>
-            <Link
-              to="/managmentPaymentPage"
-              className=" text-decoration-none text-reset text-center"
-            >
-              <Card style={{ width: "18rem" }} className="my-5">
-                <Card.Img variant="top" />
-                <Card.Body>
-                  <Card.Title>Ordini Da Saldare</Card.Title>
-                </Card.Body>
-              </Card>
-            </Link>
-          </Col>
-          <Col xs={12} md={6} lg={4}>
-            <Link
-              to={`/order/${true}`}
-              className=" text-decoration-none text-reset text-center"
-            >
-              <Card style={{ width: "18rem" }} className="my-5">
-                <Card.Img variant="top" />
-                <Card.Body>
-                  <Card.Title>Ordini Saldati</Card.Title>
-                </Card.Body>
-              </Card>
-            </Link>
-          </Col>
-        </Row>
-      </Col>
-      <Col xs={12} md={6} lg={4}>
-        <Sidebar />
-      </Col>
-    </Row>
+    <>
+      <Sidebar />
+      <Row className=" d-flex  justify-content-between pt-5 ">
+        <Col lg={10}>
+          <Row className=" d-flex justify-content-end">
+            <Col xs={12} md={6} lg={4}>
+              <Link
+                to="/managmentPaymentPage"
+                className=" text-decoration-none text-reset text-center"
+              >
+                <Card style={{ width: "18rem" }} className="my-5">
+                  <Card.Img variant="top" />
+                  <Card.Body>
+                    <Card.Title>Ordini Da Saldare</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+            <Col xs={12} md={6} lg={4}>
+              <Link
+                to={`/order/${true}`}
+                className=" text-decoration-none text-reset text-center"
+              >
+                <Card style={{ width: "18rem" }} className="my-5">
+                  <Card.Img variant="top" />
+                  <Card.Body>
+                    <Card.Title>Ordini Saldati</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Link>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </>
   );
 };

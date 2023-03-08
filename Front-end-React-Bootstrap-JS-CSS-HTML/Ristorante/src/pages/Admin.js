@@ -11,15 +11,8 @@ export const Admin = () => {
 
  
   return (
-    <Container className=" container">
-      <Row className=" justify-content-end">
-        <Col lg={1}>
-          <Sidebar />
-        </Col>
-        <Col lg={9} >
-         <Link to="/">WEEEEEEEEEEEEEEE</Link>
-        </Col>
-      </Row>
-    </Container>
+  
+          <Sidebar />  
+ 
   );
 };

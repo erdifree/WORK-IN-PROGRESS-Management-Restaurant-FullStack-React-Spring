@@ -102,16 +102,16 @@ export const putUser = async (user, id) => {
   }
 };
 
-export const putTask = async (task, taskId, userId) => {
+export const updatePayment = async (order, payed) => {
   try {
     const response = await fetch(
-      `${BASE_URL_USERS}/${userId}/tasks/${taskId}`,
+      `${BASE_URL_USERS}/orders/update/${order.id}`,
       {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(task),
+        body: JSON.stringify(order),
       }
     );
     const data = await response.json();
