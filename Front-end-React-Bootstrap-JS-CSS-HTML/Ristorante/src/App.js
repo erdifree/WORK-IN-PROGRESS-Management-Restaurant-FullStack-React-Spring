@@ -11,8 +11,6 @@ import { OrderPage } from "./pages/OrderPage";
 import { OrderCategory } from "./components/category/OrderCategory";
 import { ManagmentPaymentPage } from "./pages/ManagmentPaymentPage";
 
-
-
 const App = () => {
   const [cartProducts, setCartProducts] = useState([]);
 
@@ -62,6 +60,10 @@ const App = () => {
       setCartProducts(newCart);
     }
   };
+
+  function handleLinkClick(event) {
+   // event.preventDefault();
+  }
   return (
     <Container>
       <Routes>
@@ -72,7 +74,10 @@ const App = () => {
           path="/managmentPaymentPage"
           element={<ManagmentPaymentPage />}
         />
-        <Route path="/table" element={<TablePage />} />
+        <Route
+          path="/table"
+          element={<TablePage disable={handleLinkClick} />}
+        />
         <Route path="/admin" element={<Admin />} />
         <Route path="/order" element={<OrderCategory />} />
         <Route

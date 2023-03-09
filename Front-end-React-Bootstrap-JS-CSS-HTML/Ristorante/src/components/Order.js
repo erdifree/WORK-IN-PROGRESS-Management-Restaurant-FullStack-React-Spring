@@ -6,8 +6,7 @@ import {
 } from "react-icons/bs";
 import imgTavolo from "./img/tavolo.avif";
 import { ModalOrder } from "./ModalOrder";
-export const Order = ({ getOrderList }) => {
-
+export const Order = ({ getOrderList, update }) => {
   return (
     <>
       <Card className="c_task" style={{ width: "18rem" }}>
@@ -17,7 +16,7 @@ export const Order = ({ getOrderList }) => {
         </Card.Body>
         <Card.Footer>
           <Button>
-            <ModalOrder getOrder={getOrderList} />
+            <ModalOrder getOrder={getOrderList} update={update} />
           </Button>
         </Card.Footer>
       </Card>

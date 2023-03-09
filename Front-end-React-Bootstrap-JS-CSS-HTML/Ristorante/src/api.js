@@ -33,7 +33,7 @@ export const getFoods = async () => {
 };
 export const getFoodsByType = async (key) => {
   try {
-    const response = await fetch(BASE_URL_USERS +"/foods"+"?type="+key);
+    const response = await fetch(BASE_URL_USERS + "/foods" + "?type=" + key);
     const data = await response.json();
     return { ok: response.ok, data: data };
   } catch (error) {
@@ -41,13 +41,9 @@ export const getFoodsByType = async (key) => {
   }
 };
 
-
-
-
-export const postOrder= async (order,id) => {
-
+export const postOrder = async (order, id) => {
   try {
-    const response = await fetch(BASE_URL_USERS + "/orders/table/"+id, {
+    const response = await fetch(BASE_URL_USERS + "/orders/table/" + id, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,10 +60,10 @@ export const postOrder= async (order,id) => {
 export const deleteUserById = async (id) => {
   try {
     const response = await fetch(`${BASE_URL_USERS}/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
     });
     if (response.ok) {
-      return { ok: true, data: 'Success' };
+      return { ok: true, data: "Success" };
     } else {
       return { ok: false, data: await response.json() };
     }
@@ -89,9 +85,9 @@ export const getTableById = async (id) => {
 export const putUser = async (user, id) => {
   try {
     const response = await fetch(`${BASE_URL_USERS}/${id}`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(user),
     });
@@ -102,35 +98,31 @@ export const putUser = async (user, id) => {
   }
 };
 
-export const updatePayment = async (order, payed) => {
+export const updatePaymentApi = async (order, id) => {
   try {
-    const response = await fetch(
-      `${BASE_URL_USERS}/orders/update/${order.id}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(order),
-      }
-    );
+    const response = await fetch(`${BASE_URL_USERS}/orders/update/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(order),
+    });
     const data = await response.json();
     return { ok: response.ok, data: data };
   } catch (error) {
     return { ok: false, data: error };
   }
 };
-
 export const deleteTaskById = async (userId, taskId) => {
   try {
     const response = await fetch(
       `${BASE_URL_USERS}/${userId}/tasks/${taskId}`,
       {
-        method: 'DELETE',
+        method: "DELETE",
       }
     );
     if (response.ok) {
-      return { ok: true, data: 'Success' };
+      return { ok: true, data: "Success" };
     } else {
       return { ok: false, data: await response.json() };
     }
@@ -142,9 +134,9 @@ export const deleteTaskById = async (userId, taskId) => {
 export const postUserTask = async (userId, task) => {
   try {
     const response = await fetch(`${BASE_URL_USERS}/${userId}/tasks`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
     });

@@ -1,24 +1,16 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useState } from "react";
-import {  BsFillPatchCheckFill } from "react-icons/bs";
+import { useState, useEffect } from "react";
+import { BsFillPatchCheckFill } from "react-icons/bs";
 import { updatePayment } from "../api";
 
-export const ModalOrder = ({ getOrder }) => {
-  console.log("id ordineeee", getOrder.id);
+export const ModalOrder = ({ getOrder, update }) => {
+  console.log({update});
   const [show, setShow] = useState(false);
-  const [pay, setPay] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const handlePay = () => setPay(true);
-
-  const updatePayment = async () => {
-    handlePay()
-    const result = await updatePayment(getOrder, pay);
-    if(result.ok){
-       handleClose();
-    }
-  };
+  console.log("Id che mi serveeeeeee", getOrder.id);
 
   return (
     <>
@@ -31,11 +23,14 @@ export const ModalOrder = ({ getOrder }) => {
         </Modal.Header>
         <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={updatePayment}>
-            Save Changes
+          <Button
+            variant="primary"
+            onClick={(e) => { e.preventDefault();
+              update(getOrder.id);
+              handleClose();
+            }}
+          >
+            isPayed
           </Button>
         </Modal.Footer>
       </Modal>

@@ -15,11 +15,7 @@ console.log("sono il payed da passare",payed)
    setData(result.data);
  };
 
- const goto=()=>{
-  if(payed=false){
-    return <Link to="/admin"></Link>;
-  }
- }
+
 
  useEffect(() => {
    loadOrders();

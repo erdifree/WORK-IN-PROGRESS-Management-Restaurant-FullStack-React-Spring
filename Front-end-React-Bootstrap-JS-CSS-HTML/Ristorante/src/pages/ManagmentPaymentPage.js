@@ -6,34 +6,28 @@ import { Button } from "react-bootstrap";
 import { ModalOrder } from "../components/ModalOrder";
 import Row from "react-bootstrap";
 import Col from "react-bootstrap";
-
-
+import { updatePaymentApi } from "../api";
 export const ManagmentPaymentPage = () => {
   const [data, setData] = useState([]);
-  const [payed, setPayed] = useState(false);
+  const [order, setOrder] = useState({ payed: true });
+
   const loadOrders = async () => {
     const result = await getOrder("false");
     console.log(result.data);
     setData(result.data);
   };
+  const updatePayment = async (id) => {
+    const result = await updatePaymentApi(order, id);
+    loadOrders();
+  };
   useEffect(() => {
     loadOrders();
   }, []);
 
-  
-
   return (
     <>
       <Sidebar />
-
-      <OrderList
-        data={data}
-        order={
-          <Button>
-            <ModalOrder />
-          </Button>
-        }
-      />
+      <OrderList data={data} update={updatePayment} />
     </>
   );
 };

@@ -3,7 +3,7 @@ import { geTable } from "../api";
 import { TableList } from "../components/TableList";
 import { Sidebar } from "../components/Sidebar";
 
-export const TablePage = () => {
+export const TablePage = ({ disable }) => {
   const [data, setData] = useState([]);
 
   const loadTable = async () => {
@@ -19,7 +19,7 @@ export const TablePage = () => {
   return (
     <>
       <Sidebar />
-      <TableList table={data}  />
+      <TableList table={data} disable={disable} />
     </>
   );
 };
