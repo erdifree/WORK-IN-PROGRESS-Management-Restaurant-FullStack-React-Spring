@@ -7,6 +7,7 @@ import { ModalOrder } from "../components/ModalOrder";
 import Row from "react-bootstrap";
 import Col from "react-bootstrap";
 import { updatePaymentApi } from "../api";
+import { Table } from "../components/Table";
 export const ManagmentPaymentPage = () => {
   const [data, setData] = useState([]);
   const [order, setOrder] = useState({ payed: true });
@@ -20,14 +21,17 @@ export const ManagmentPaymentPage = () => {
     const result = await updatePaymentApi(order, id);
     loadOrders();
   };
+
+
   useEffect(() => {
     loadOrders();
   }, []);
 
   return (
     <>
-      <Sidebar />
+      <Sidebar  />
       <OrderList data={data} update={updatePayment} />
+    
     </>
   );
 };

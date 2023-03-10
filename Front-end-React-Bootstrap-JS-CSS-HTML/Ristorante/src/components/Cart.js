@@ -3,7 +3,7 @@ import { BiDish } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import React, { useState, useParams } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { postOrder } from "../api";
+import { postOrderApi } from "../api";
 
 const Cart = ({ add, del, cartProducts, tableId, reset }) => {
   const [showList, setShowList] = useState(false);
@@ -13,7 +13,7 @@ const Cart = ({ add, del, cartProducts, tableId, reset }) => {
   console.log("questa e la lista che devo registrare", cartProducts, tableId);
 
   const handlePost = async (order, id) => {
-    const result = await postOrder(order, id);
+    const result = await postOrderApi(order, id);
     if (result.ok) {
       console.log("Ordine  Confermoato e Registrato");
     }

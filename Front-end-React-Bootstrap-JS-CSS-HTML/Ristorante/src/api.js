@@ -41,7 +41,7 @@ export const getFoodsByType = async (key) => {
   }
 };
 
-export const postOrder = async (order, id) => {
+export const postOrderApi = async (order, id) => {
   try {
     const response = await fetch(BASE_URL_USERS + "/orders/table/" + id, {
       method: "POST",

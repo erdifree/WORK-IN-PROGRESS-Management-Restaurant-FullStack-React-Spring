@@ -20,6 +20,7 @@ public class Tables {
     private String  name;
 
   @OneToMany(mappedBy = "table_id",cascade = CascadeType.ALL)
+
     private Set<Orders> ordersSet;
 
 

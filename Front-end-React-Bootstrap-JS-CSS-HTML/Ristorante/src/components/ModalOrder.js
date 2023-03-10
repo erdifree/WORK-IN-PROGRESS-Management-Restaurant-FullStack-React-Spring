@@ -5,7 +5,7 @@ import { BsFillPatchCheckFill } from "react-icons/bs";
 import { updatePayment } from "../api";
 
 export const ModalOrder = ({ getOrder, update }) => {
-  console.log({update});
+  console.log({ update });
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -17,22 +17,20 @@ export const ModalOrder = ({ getOrder, update }) => {
       <Button variant="primary" onClick={handleShow}>
         <BsFillPatchCheckFill className="text-light" size={"40px"} />
       </Button>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
+      <Modal show={show} onHide={handleClose} className=" d-flex text-center">
+        <Modal.Body>
           <Button
             variant="primary"
-            onClick={(e) => { e.preventDefault();
+            onClick={(e) => {
+              e.preventDefault();
               update(getOrder.id);
               handleClose();
             }}
           >
-            isPayed
+            Click to confirm payment
           </Button>
-        </Modal.Footer>
+        </Modal.Body>
+        <Modal.Footer></Modal.Footer>
       </Modal>
     </>
   );

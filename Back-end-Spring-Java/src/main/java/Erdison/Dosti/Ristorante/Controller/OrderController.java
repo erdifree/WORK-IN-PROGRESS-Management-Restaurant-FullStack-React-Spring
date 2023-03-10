@@ -53,12 +53,28 @@ public class OrderController {
             for (Orders order : result) {
                 if (order.isPayed() == str) {
                     ordersList.add(order);
-                 
                 }
             }
             return ordersList;
         }
     }
+
+  /*  @GetMapping("/table/{id}")
+    public List<OrderDTO> getOrderDTO(@RequestParam (name="flag",required = false)boolean str,@PathVariable Integer id){
+        List<Orders> result = orderRepository.findAll();
+        List<OrderDTO> ordersList= new ArrayList<>();
+        if (result.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ("Orders not found"));
+        } else {
+            OrderDTO orderDTO= new OrderDTO(str,id);
+            for (Orders order : result) {
+                if (order.isPayed() == str) {
+                    ordersList.add(orderDTO);
+                }
+            }
+            return ordersList;
+        }
+    }*/
 
     @PostMapping("/table/{id}")
     public ResponseEntity<Object> create(@RequestBody Orders orders,@PathVariable Integer id) {

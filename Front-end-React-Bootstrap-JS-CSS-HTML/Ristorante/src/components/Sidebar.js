@@ -10,7 +10,7 @@ import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export const Sidebar = () => {
+export const Sidebar = ({ }) => {
   const [show, setShow] = useState(true);
 
   return (

@@ -60,7 +60,7 @@ const App = () => {
       setCartProducts(newCart);
     }
   };
-
+ 
   function handleLinkClick(event) {
    // event.preventDefault();
   }
