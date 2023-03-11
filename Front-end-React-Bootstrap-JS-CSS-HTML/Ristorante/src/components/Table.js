@@ -6,21 +6,31 @@ import {
   BsClipboardX,
 } from "react-icons/bs";
 import { OrderList } from "./OrderList";
-import imgTavolo from "./img/tavolo.avif"
+import imgTavolo from "./img/tavolo.avif";
 import { Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-export const Table = ({ table, disable }) => {
+export const Table = ({ table }) => {
+  const [stateButton, setStateButton] = useState(true);
   console.log("sono il tavolo", table.ordersSet);
+  const navigate = useNavigate();
 
   const func = (event) => {
     const result = table.ordersSet.map((el) => {
       console.log(el.payed);
       if (el.payed === false) {
-        console.log("hahahahahahaha");
-         event.preventDefault();
-       
+        setStateButton(false);
+        event.preventDefault();
+      }
+    });
+  };
+
+  const funcedit = (event) => {
+    const result = table.ordersSet.map((el) => {
+      console.log(el.payed);
+      if (el.payed === false) {
+        navigate(`/table/${table.id}/order-id/${el.id}`);
       }
     });
   };
@@ -30,6 +40,7 @@ export const Table = ({ table, disable }) => {
       <Link
         to={`/table/${table.id}`}
         className=" text-decoration-none text-reset text-center"
+        onLoad={func}
         onClick={func}
       >
         <Card className="c_task" style={{ width: "18rem" }}>
@@ -38,7 +49,9 @@ export const Table = ({ table, disable }) => {
             <div>{table.name}</div>
           </Card.Body>
           <Card.Footer>
-            <Button onClick={func}>edit</Button>
+            <Button hidden={stateButton} onClick={funcedit} >
+              edit
+            </Button>
           </Card.Footer>
         </Card>
       </Link>

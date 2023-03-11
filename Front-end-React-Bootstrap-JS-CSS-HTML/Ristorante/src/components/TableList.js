@@ -1,12 +1,18 @@
 import { Row, Col } from "react-bootstrap";
 import { Table } from "./Table";
-export const TableList = ({ table = [], disable }) => {
+export const TableList = ({ table = [] }) => {
   return (
-    <Row className="gy-3 mt-5 pt-5 justify-content-center">
+    <Row className="gy-3 mt-5 pt-5">
       {table.map((el) => {
         return (
-          <Col xs={4} key={el.id} className=" pt-5">
-            <Table table={el} disable={disable} />
+          <Col
+            key={el.id}
+            xs={12}
+            md={6}
+            lg={6}
+            className=" d-flex justify-content-between"
+          >
+            <Table table={el} />
           </Col>
         );
       })}

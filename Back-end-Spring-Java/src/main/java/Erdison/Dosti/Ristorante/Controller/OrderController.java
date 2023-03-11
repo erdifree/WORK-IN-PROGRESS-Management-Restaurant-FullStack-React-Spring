@@ -59,7 +59,7 @@ public class OrderController {
         }
     }
 
-  /*  @GetMapping("/table/{id}")
+    @GetMapping("/table/{id}")
     public List<OrderDTO> getOrderDTO(@RequestParam (name="flag",required = false)boolean str,@PathVariable Integer id){
         List<Orders> result = orderRepository.findAll();
         List<OrderDTO> ordersList= new ArrayList<>();
@@ -74,7 +74,7 @@ public class OrderController {
             }
             return ordersList;
         }
-    }*/
+    }
 
     @PostMapping("/table/{id}")
     public ResponseEntity<Object> create(@RequestBody Orders orders,@PathVariable Integer id) {

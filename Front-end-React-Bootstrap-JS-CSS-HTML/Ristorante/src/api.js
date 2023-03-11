@@ -56,6 +56,21 @@ export const postOrderApi = async (order, id) => {
     return { ok: false, data: error };
   }
 };
+export const putOrderApi = async (order, id) => {
+  try {
+    const response = await fetch(BASE_URL_USERS + "/orders/update/" + id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(order),
+    });
+    const data = await response.json();
+    return { ok: response.ok, data: data };
+  } catch (error) {
+    return { ok: false, data: error };
+  }
+};
 
 export const deleteUserById = async (id) => {
   try {
@@ -82,21 +97,7 @@ export const getTableById = async (id) => {
   }
 };
 
-export const putUser = async (user, id) => {
-  try {
-    const response = await fetch(`${BASE_URL_USERS}/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
-    const data = await response.json();
-    return { ok: response.ok, data: data };
-  } catch (error) {
-    return { ok: false, data: error };
-  }
-};
+
 
 export const updatePaymentApi = async (order, id) => {
   try {

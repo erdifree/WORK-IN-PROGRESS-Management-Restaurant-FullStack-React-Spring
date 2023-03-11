@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button, Form, Row, Col } from "react-bootstrap";
+import {Row,Col } from "react-bootstrap";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { postOrder, getTableById, putUser, getFoords } from "../../api";
-import { FoodList } from "../FoodList";
 import { Card } from "react-bootstrap";
 import {
   BsFillTrashFill,
@@ -20,7 +18,8 @@ import Dessert from "../img/dessert.jpg";
 import Cart from "../Cart";
 export const Menu = ({ edit, add, del, cartProducts, reset }) => {
   const { tableId } = useParams();
-  const navigate = useNavigate();
+  const { elId } = useParams();
+console.log("sono id del ordine che serve",{elId})
 
   return (
     <Row className=" d-flex  justify-content-between justify-content-evenly flex-wrap ">
@@ -30,6 +29,7 @@ export const Menu = ({ edit, add, del, cartProducts, reset }) => {
         cartProducts={cartProducts}
         tableId={tableId}
         reset={reset}
+        elId={elId}
       />
       <Col xs={12} md={6} lg={4}>
         <Link

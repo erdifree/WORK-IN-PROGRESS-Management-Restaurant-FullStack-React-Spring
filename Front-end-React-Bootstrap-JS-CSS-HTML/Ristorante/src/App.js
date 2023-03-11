@@ -92,6 +92,17 @@ const App = () => {
           }
         />
         <Route
+          path="/table/:tableId/order-id/:elId"
+          element={
+            <Menu
+              add={handleAddClick}
+              del={handleDeleteClick}
+              cartProducts={cartProducts}
+              reset={handleReset}
+            />
+          }
+        />
+        <Route
           path="/table/:tableId/:type"
           element={
             <Category

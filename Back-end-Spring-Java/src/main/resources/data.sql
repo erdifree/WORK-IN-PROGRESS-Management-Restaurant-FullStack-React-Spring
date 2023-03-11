@@ -13,7 +13,7 @@ VALUES ("vinoo rosso", 'https://www.colderove.it/932-thickbox_default/rosso-di-c
 
 
 INSERT INTO tabella(name)
- VALUE('Rose'),('Girasole'),('Tulipani'),('Ciclamino');
+ VALUE('Le Rose'),('Girasole'),('Tulipani'),('Ciclamino');
 
 
 INSERT INTO ordini(is_payed,local_date,seats,table_id)
