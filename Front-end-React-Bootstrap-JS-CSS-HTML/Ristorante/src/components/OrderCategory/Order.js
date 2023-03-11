@@ -1,11 +1,6 @@
-
 import { Button, Card } from "react-bootstrap";
-import {
-  BsFillTrashFill,
-  BsPencilFill,
-} from "react-icons/bs";
-import imgTavolo from "./img/tavolo.avif";
-import { ModalOrder } from "./ModalOrder";
+import { BsFillTrashFill, BsPencilFill } from "react-icons/bs";
+import { ModalOrder } from "../ModalOrder";
 export const Order = ({ getOrderList, update }) => {
   return (
     <>

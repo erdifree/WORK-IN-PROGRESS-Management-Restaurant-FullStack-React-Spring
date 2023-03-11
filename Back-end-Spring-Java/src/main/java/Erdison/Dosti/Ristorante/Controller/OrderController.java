@@ -106,12 +106,28 @@ public class OrderController {
         Optional<Orders> result= orderRepository.findById(id);
         if(!result.isEmpty()){
             Orders newOrder=result.get();
+            List<Drinks>drinksList= new ArrayList<>();
+            List<Foods>foodsList= new ArrayList<>();
+             for (Drinks drinks : result.get().getDrink_id()){
+                 drinksList.add(drinks);
+             }
+             for (Foods foods : result.get().getFood_id()){
+                foodsList.add(foods);
+             }
+            if (orders.getDrink_id() != null) {
+                for (Drinks drinks : orders.getDrink_id()){
+                    drinksList.add(drinks);
+                }
+            }
+            if (orders.getFood_id() != null) {
+                for (Foods foods : orders.getFood_id()) {
+                    foodsList.add(foods);
+                }
+            }
             newOrder.setId(id);
             newOrder.setPayed(orders.isPayed());
-            newOrder.setSeats(orders.getSeats());
-            newOrder.setTable_id(orders.getTable_id());
-            newOrder.setDrink_id(orders.getDrink_id());
-            newOrder.setFood_id(orders.getFood_id());
+            newOrder.setDrink_id(drinksList);
+            newOrder.setFood_id(foodsList);
             orderRepository.save(newOrder);
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Dish Not Found");

@@ -1,26 +1,32 @@
 import { BsCart2, BsFillPatchCheckFill } from "react-icons/bs";
 import { BiDish } from "react-icons/bi";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { postOrderApi } from "../api";
-
+import { postOrderApi, putOrderApi } from "../api";
 
 const Cart = ({ add, del, cartProducts, tableId, reset, elId }) => {
   const [showList, setShowList] = useState(false);
   const [show, setShow] = useState(false);
   const [order, setOrder] = useState({});
-console.log("sono id del ordine che serve per far update dell'ordine", { elId });
+  console.log("sono id del ordine che serve per far update dell'ordine", {
+    elId,
+  });
   const navigate = useNavigate();
-  
+
   console.log("questa e la lista che devo registrare", cartProducts, tableId);
-  console.log("sono id del ordine che serve per far update dell'ordine", { elId });
-  
-  const handlePost = async (order,id,) => {
-    const result = await postOrderApi(order, id);
+  console.log("sono id del ordine che serve per far update dell'ordine", {
+    elId,
+  });
+
+  const handlePost = async (order, id, orderId) => {
+    orderId == undefined
+      ? postOrderApi(order,id)
+      : putOrderApi(order,orderId);
+    /* const result = await postOrderApi(order, id);
     if (result.ok) {
       console.log("Ordine  Confermoato e Registrato");
-    }
+    }*/
   };
   /*Find all list food  in cart and prepare a arry with id to insert in order body */
   const listFood = () => {
@@ -41,7 +47,17 @@ console.log("sono id del ordine che serve per far update dell'ordine", { elId })
       payed: false,
     };
     setOrder(order);
-    handlePost(order,tableId);
+    handlePost(order, tableId, elId);
+  };
+
+  const updateOrder = () => {
+    const order = {
+      food_id: listFood(),
+      drink_id: listFood(),
+      payed: false,
+    };
+    setOrder(order);
+    handlePost(order, tableId,elId);
   };
 
   /**Function of callback of ofcanvas of cart */
@@ -110,7 +126,7 @@ console.log("sono id del ordine che serve per far update dell'ordine", { elId })
               className="text-light"
               size={"40px"}
               onClick={() => {
-                createOrder();
+                elId === undefined ? createOrder():updateOrder();
                 reset();
                 navigate("/table");
               }}

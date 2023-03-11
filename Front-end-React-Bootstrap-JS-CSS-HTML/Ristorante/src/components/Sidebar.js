@@ -17,29 +17,6 @@ export const Sidebar = ({ }) => {
     <>
       <Navbar bg="dark" className=" justify-content-between  fixed-top mb-5">
         <Col sx={12} lg={2} className="mt-2">
-          <Link to="/order">
-            <Button>
-              <AiFillSetting />
-              Ordini
-            </Button>
-          </Link>
-        </Col>
-        <Col sx={12} lg={2} className="mt-2">
-          <Button>
-            <AiFillSetting />
-            Piatti
-          </Button>
-        </Col>
-        <Col sx={12} lg={2} className="mt-2">
-          <Link to="/managmentPaymentPage">
-            <Button>
-              <AiFillSetting />
-              Cassa
-            </Button>
-          </Link>
-        </Col>
-
-        <Col sx={12} lg={2} className="mt-2">
           <Link to="/">
             <Button variant="outline-success">
               <AiFillSetting />

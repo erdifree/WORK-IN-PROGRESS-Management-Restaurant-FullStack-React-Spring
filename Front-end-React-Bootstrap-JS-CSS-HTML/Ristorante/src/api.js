@@ -1,5 +1,7 @@
 const BASE_URL_USERS = "http://localhost:8080/api1";
 
+
+//////////////////Service Rest Table//////////////////////////
 export const geTable = async () => {
   try {
     const response = await fetch(BASE_URL_USERS + "/tables");
@@ -9,31 +11,21 @@ export const geTable = async () => {
     return { ok: false, data: error };
   }
 };
-
+export const getTableById = async (id) => {
+  try {
+    const response = await fetch(`${BASE_URL_USERS}/tables/${id}`);
+    const data = await response.json();
+    return { ok: response.ok, data: data };
+  } catch (error) {
+    return { ok: false, data: error };
+  }
+};
+//////////////////Service Rest Order//////////////////////////
 export const getOrder = async (type) => {
   try {
     const response = await fetch(
       BASE_URL_USERS + "/orders/ispayed?flag=" + type
     );
-    const data = await response.json();
-    return { ok: response.ok, data: data };
-  } catch (error) {
-    return { ok: false, data: error };
-  }
-};
-
-export const getFoods = async () => {
-  try {
-    const response = await fetch(BASE_URL_USERS + "/foods");
-    const data = await response.json();
-    return { ok: response.ok, data: data };
-  } catch (error) {
-    return { ok: false, data: error };
-  }
-};
-export const getFoodsByType = async (key) => {
-  try {
-    const response = await fetch(BASE_URL_USERS + "/foods" + "?type=" + key);
     const data = await response.json();
     return { ok: response.ok, data: data };
   } catch (error) {
@@ -56,7 +48,7 @@ export const postOrderApi = async (order, id) => {
     return { ok: false, data: error };
   }
 };
-export const putOrderApi = async (order, id) => {
+export const putOrderApi = async (order,id) => {
   try {
     const response = await fetch(BASE_URL_USERS + "/orders/update/" + id, {
       method: "PUT",
@@ -71,34 +63,6 @@ export const putOrderApi = async (order, id) => {
     return { ok: false, data: error };
   }
 };
-
-export const deleteUserById = async (id) => {
-  try {
-    const response = await fetch(`${BASE_URL_USERS}/${id}`, {
-      method: "DELETE",
-    });
-    if (response.ok) {
-      return { ok: true, data: "Success" };
-    } else {
-      return { ok: false, data: await response.json() };
-    }
-  } catch (error) {
-    return { ok: false, data: error };
-  }
-};
-
-export const getTableById = async (id) => {
-  try {
-    const response = await fetch(`${BASE_URL_USERS}/tables/${id}`);
-    const data = await response.json();
-    return { ok: response.ok, data: data };
-  } catch (error) {
-    return { ok: false, data: error };
-  }
-};
-
-
-
 export const updatePaymentApi = async (order, id) => {
   try {
     const response = await fetch(`${BASE_URL_USERS}/orders/update/${id}`, {
@@ -114,7 +78,31 @@ export const updatePaymentApi = async (order, id) => {
     return { ok: false, data: error };
   }
 };
-export const deleteTaskById = async (userId, taskId) => {
+
+///////////////Foods REST SERVICE////////////////////////
+
+export const getFoods = async () => {
+  try {
+    const response = await fetch(BASE_URL_USERS + "/foods");
+    const data = await response.json();
+    return { ok: response.ok, data: data };
+  } catch (error) {
+    return { ok: false, data: error };
+  }
+};
+
+
+export const getFoodsByType = async (key) => {
+  try {
+    const response = await fetch(BASE_URL_USERS + "/foods" + "?type=" + key);
+    const data = await response.json();
+    return { ok: response.ok, data: data };
+  } catch (error) {
+    return { ok: false, data: error };
+  }
+};
+
+export const deliteFoodApi = async (userId, taskId) => {
   try {
     const response = await fetch(
       `${BASE_URL_USERS}/${userId}/tasks/${taskId}`,
@@ -132,14 +120,14 @@ export const deleteTaskById = async (userId, taskId) => {
   }
 };
 
-export const postUserTask = async (userId, task) => {
+export const postFoodApi = async (food) => {
   try {
-    const response = await fetch(`${BASE_URL_USERS}/${userId}/tasks`, {
+    const response = await fetch(`${BASE_URL_USERS}/foods`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(task),
+      body: JSON.stringify(food),
     });
     const data = await response.json();
     return { ok: response.ok, data: data };

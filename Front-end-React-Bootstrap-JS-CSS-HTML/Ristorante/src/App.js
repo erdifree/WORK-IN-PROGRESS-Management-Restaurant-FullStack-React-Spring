@@ -4,7 +4,7 @@ import { Homepage } from "./pages/Homepage";
 import { TablePage } from "./pages/TablePage";
 import { Admin } from "./pages/Admin";
 import { Menu } from "./components/category/Menu";
-import { Category } from "./pages/Category";
+import { GetFoodByCategory } from "./pages/GetFoodByCategory";
 import { useState } from "react";
 import { Login } from "./pages/LoginPage";
 import { OrderPage } from "./pages/OrderPage";
@@ -105,7 +105,7 @@ const App = () => {
         <Route
           path="/table/:tableId/:type"
           element={
-            <Category
+            <GetFoodByCategory
               addFood={handleAddClick}
               del={handleDeleteClick}
               cartProducts={cartProducts}

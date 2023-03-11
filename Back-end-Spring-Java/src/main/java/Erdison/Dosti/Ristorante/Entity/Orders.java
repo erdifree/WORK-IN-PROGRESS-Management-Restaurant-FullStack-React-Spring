@@ -102,4 +102,33 @@ public class Orders {
     public void setTable_id(Tables table_id) {
         this.table_id = table_id;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Orders orders)) return false;
+
+        if (getId() != orders.getId()) return false;
+        if (isPayed() != orders.isPayed()) return false;
+        if (getSeats() != orders.getSeats()) return false;
+        if (getLocalDate() != null ? !getLocalDate().equals(orders.getLocalDate()) : orders.getLocalDate() != null)
+            return false;
+        if (getFood_id() != null ? !getFood_id().equals(orders.getFood_id()) : orders.getFood_id() != null)
+            return false;
+        if (getDrink_id() != null ? !getDrink_id().equals(orders.getDrink_id()) : orders.getDrink_id() != null)
+            return false;
+        return getTable_id() != null ? getTable_id().equals(orders.getTable_id()) : orders.getTable_id() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId();
+        result = 31 * result + (getLocalDate() != null ? getLocalDate().hashCode() : 0);
+        result = 31 * result + (isPayed() ? 1 : 0);
+        result = 31 * result + getSeats();
+        result = 31 * result + (getFood_id() != null ? getFood_id().hashCode() : 0);
+        result = 31 * result + (getDrink_id() != null ? getDrink_id().hashCode() : 0);
+        result = 31 * result + (getTable_id() != null ? getTable_id().hashCode() : 0);
+        return result;
+    }
 }

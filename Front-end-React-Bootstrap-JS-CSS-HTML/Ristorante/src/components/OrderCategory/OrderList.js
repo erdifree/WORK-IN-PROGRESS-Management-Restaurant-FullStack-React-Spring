@@ -1,4 +1,4 @@
-import {Order} from "./Order";
+import { Order } from "./Order";
 import { Row, Col } from "react-bootstrap";
 export const OrderList = ({ data = [], update }) => {
   return (

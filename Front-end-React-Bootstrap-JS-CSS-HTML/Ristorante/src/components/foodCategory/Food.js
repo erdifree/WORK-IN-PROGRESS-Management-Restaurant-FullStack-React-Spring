@@ -5,15 +5,14 @@ import {
   BsClipboardCheck,
   BsClipboardX,
 } from "react-icons/bs";
-import { OrderList } from "./OrderList";
-import imgTavolo from "./img/tavolo.avif";
+import { OrderList } from "../OrderCategory/OrderList";
+
 import { Col } from "react-bootstrap";
 
+export const Food = ({ food, addFood }) => {
+  console.log(" fooooood", { food });
 
-export const Food = ({ food,addFood}) => {
-  console.log(" fooooood",{food});
-
-  console.log("Sono addFood del food", {addFood});
+  console.log("Sono addFood del food", { addFood });
   return (
     <>
       <Card className="c_task" style={{ width: "18rem" }}>
@@ -37,7 +36,6 @@ export const Food = ({ food,addFood}) => {
           </button>
         </Card.Footer>
       </Card>
-     
     </>
   );
 };

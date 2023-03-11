@@ -5,7 +5,7 @@ import {
   BsClipboardCheck,
   BsClipboardX,
 } from "react-icons/bs";
-import { OrderList } from "./OrderList";
+import { OrderList } from "./OrderCategory/OrderList"; 
 import imgTavolo from "./img/tavolo.avif";
 import { Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";

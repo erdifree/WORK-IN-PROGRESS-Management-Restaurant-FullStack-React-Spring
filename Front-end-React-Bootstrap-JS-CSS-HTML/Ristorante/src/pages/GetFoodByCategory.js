@@ -1,8 +1,8 @@
-import { FoodList } from "../components/FoodList";
+import { FoodList } from "../components/foodCategory/FoodList";
 import { useState, useEffect } from "react";
 import { getFoodsByType } from "../api";
 import { useParams } from "react-router-dom";
-export const Category = ({ addFood }) => {
+export const GetFoodByCategory = ({ addFood }) => {
   const [foods, setFoods] = useState([]);
   const { type } = useParams();
 
