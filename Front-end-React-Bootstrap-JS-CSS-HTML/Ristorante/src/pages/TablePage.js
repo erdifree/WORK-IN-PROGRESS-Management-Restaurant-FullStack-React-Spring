@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { geTable } from "../api";
-import { TableList } from "../components/TableList";
+import { TableList } from "../components/tablecategory/TableList";
 import { Sidebar } from "../components/Sidebar";
-
 
 export const TablePage = () => {
   const [data, setData] = useState([]);

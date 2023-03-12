@@ -4,16 +4,24 @@ import { getOrder } from "../api";
 import { OrderList } from "../components/OrderCategory/OrderList";
 import { Sidebar } from "../components/Sidebar";
 import { Link } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import { deliteOrderApi } from "../api";
 
 export const OrderPage = () => {
   const [data, setData] = useState([]);
   const { payed } = useParams();
   console.log("sono il payed da passare", payed);
+
   const loadOrders = async () => {
     const result = await getOrder(payed);
     console.log(result.data);
     setData(result.data);
   };
+
+  const deleteOrders=async(orderId)=>{
+    const result= await deliteOrderApi(orderId)
+    loadOrders()
+  }
 
   useEffect(() => {
     loadOrders();
@@ -22,7 +30,9 @@ export const OrderPage = () => {
   return (
     <>
       <Sidebar />
-      <OrderList data={data} />
+      <Container>
+        <OrderList data={data} payed={payed} deleteOrder={deleteOrders} />
+      </Container>
     </>
   );
 };

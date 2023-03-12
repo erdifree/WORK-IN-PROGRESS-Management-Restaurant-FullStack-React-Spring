@@ -5,8 +5,8 @@ import {
   BsClipboardCheck,
   BsClipboardX,
 } from "react-icons/bs";
-import { OrderList } from "./OrderCategory/OrderList"; 
-import imgTavolo from "./img/tavolo.avif";
+import { OrderList } from "../OrderCategory/OrderList";
+import imgTavolo from "../img/tavolo.avif";
 import { Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -49,7 +49,7 @@ export const Table = ({ table }) => {
             <div>{table.name}</div>
           </Card.Body>
           <Card.Footer>
-            <Button hidden={stateButton} onClick={funcedit} >
+            <Button hidden={stateButton} onClick={funcedit}>
               edit
             </Button>
           </Card.Footer>

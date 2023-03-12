@@ -78,6 +78,20 @@ export const updatePaymentApi = async (order, id) => {
     return { ok: false, data: error };
   }
 };
+export const deliteOrderApi = async (orderId) => {
+  try {
+    const response = await fetch(`${BASE_URL_USERS}/orders/${orderId}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      return { ok: true, data: "Success" };
+    } else {
+      return { ok: false, data: await response.json() };
+    }
+  } catch (error) {
+    return { ok: false, data: error };
+  }
+};
 
 ///////////////Foods REST SERVICE////////////////////////
 
