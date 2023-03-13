@@ -9,20 +9,13 @@ const Cart = ({ add, del, cartProducts, tableId, reset, elId }) => {
   const [showList, setShowList] = useState(false);
   const [show, setShow] = useState(false);
   const [order, setOrder] = useState({});
-  console.log("sono id del ordine che serve per far update dell'ordine", {
-    elId,
-  });
-  const navigate = useNavigate();
 
-  console.log("questa e la lista che devo registrare", cartProducts, tableId);
-  console.log("sono id del ordine che serve per far update dell'ordine", {
-    elId,
-  });
+  const navigate = useNavigate();
 
   const handlePost = async (order, id, orderId) => {
     orderId == undefined
-      ? postOrderApi(order,id)
-      : putOrderApi(order,orderId);
+      ? postOrderApi(order, id)
+      : putOrderApi(order, orderId);
     /* const result = await postOrderApi(order, id);
     if (result.ok) {
       console.log("Ordine  Confermoato e Registrato");
@@ -57,7 +50,7 @@ const Cart = ({ add, del, cartProducts, tableId, reset, elId }) => {
       payed: false,
     };
     setOrder(order);
-    handlePost(order, tableId,elId);
+    handlePost(order, tableId, elId);
   };
 
   /**Function of callback of ofcanvas of cart */
@@ -126,7 +119,7 @@ const Cart = ({ add, del, cartProducts, tableId, reset, elId }) => {
               className="text-light"
               size={"40px"}
               onClick={() => {
-                elId === undefined ? createOrder():updateOrder();
+                elId === undefined ? createOrder() : updateOrder();
                 reset();
                 navigate("/table");
               }}

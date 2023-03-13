@@ -1,6 +1,5 @@
 const BASE_URL_USERS = "http://localhost:8080/api1";
 
-
 //////////////////Service Rest Table//////////////////////////
 export const geTable = async () => {
   try {
@@ -32,6 +31,17 @@ export const getOrder = async (type) => {
     return { ok: false, data: error };
   }
 };
+export const getOrderDTO = async (type) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL_USERS}/orders/orderdto/get?flag=` + type
+    );
+    const data = await response.json();
+    return { ok: response.ok, data: data };
+  } catch (error) {
+    return { ok: false, data: error };
+  }
+};
 
 export const postOrderApi = async (order, id) => {
   try {
@@ -48,7 +58,7 @@ export const postOrderApi = async (order, id) => {
     return { ok: false, data: error };
   }
 };
-export const putOrderApi = async (order,id) => {
+export const putOrderApi = async (order, id) => {
   try {
     const response = await fetch(BASE_URL_USERS + "/orders/update/" + id, {
       method: "PUT",
@@ -104,7 +114,6 @@ export const getFoods = async () => {
     return { ok: false, data: error };
   }
 };
-
 
 export const getFoodsByType = async (key) => {
   try {

@@ -8,19 +8,20 @@ import {
 import { ModalOrder } from "../ModalOrder";
 import Table from "react-bootstrap/Table";
 import { Row, Col } from "react-bootstrap";
-export const Order = ({ getOrderList, update, deleteOrder }) => {
+export const Order = ({ getOrderList, update, deleteOrder, dto }) => {
+  console.log("DTOOOOOOOOOOOOO", dto);
+  console.log("DTaaaaaaaaaa", getOrderList.id);
   const flag = false;
   return (
     <>
       {getOrderList.payed === flag ? (
         <Card className="c_task" style={{ width: "18rem" }}>
           <Card.Body>
-            <div>Data di Conferma Ordine: {getOrderList.localDate}</div>
-            <div>Coperti: {getOrderList.seats}</div>
+            <div>Ordine Tavolo N: {dto.table_id}</div>
           </Card.Body>
           <Card.Footer>
             <Button>
-              <ModalOrder getOrder={getOrderList} update={update} />
+             
             </Button>
           </Card.Footer>
         </Card>
@@ -36,9 +37,9 @@ export const Order = ({ getOrderList, update, deleteOrder }) => {
                 }}
               />
             </Button>
-          
+
             <Button variant="light">
-              <BsClipboardCheck />
+              <ModalOrder getOrder={getOrderList} update={update} />
             </Button>
           </td>
         </tr>

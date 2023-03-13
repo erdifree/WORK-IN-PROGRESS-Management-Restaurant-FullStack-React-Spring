@@ -10,18 +10,13 @@ import Erdison.Dosti.Ristorante.Repository.DrinksRepository;
 import Erdison.Dosti.Ristorante.Repository.FoodsRepository;
 import Erdison.Dosti.Ristorante.Repository.OrderRepository;
 import Erdison.Dosti.Ristorante.Repository.TableRepository;
-import jakarta.persistence.Table;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,18 +54,21 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/table/{id}")
-    public List<OrderDTO> getOrderDTO(@RequestParam (name="flag",required = false)boolean str,@PathVariable Integer id){
-        List<Orders> result = orderRepository.findAll();
+    @GetMapping("/orderdto/get")
+    public List<OrderDTO> getOrderDTO(@RequestParam (name="flag",required = false)boolean str){
+        List<Orders> result = orderRepository.findByIsPayed(str);
         List<OrderDTO> ordersList= new ArrayList<>();
         if (result.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ("Orders not found"));
         } else {
-            OrderDTO orderDTO= new OrderDTO(str,id);
+          
+            int index=0;
             for (Orders order : result) {
-                if (order.isPayed() == str) {
-                    ordersList.add(orderDTO);
-                }
+                OrderDTO orderDTO= new OrderDTO();
+                    orderDTO.setPayed(order.isPayed());
+                    orderDTO.setTable_id(order.getTable_id().getId());
+                    ordersList.add(index,orderDTO);
+                    index++;
             }
             return ordersList;
         }
