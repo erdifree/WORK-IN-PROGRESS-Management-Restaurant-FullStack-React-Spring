@@ -58,15 +58,18 @@ public class OrderController {
     public List<OrderDTO> getOrderDTO(@RequestParam (name="flag",required = false)boolean str){
         List<Orders> result = orderRepository.findByIsPayed(str);
         List<OrderDTO> ordersList= new ArrayList<>();
-        if (result.isEmpty()) {
+      if (result.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ("Orders not found"));
         } else {
-          
             int index=0;
             for (Orders order : result) {
                 OrderDTO orderDTO= new OrderDTO();
-                    orderDTO.setPayed(order.isPayed());
-                    orderDTO.setTable_id(order.getTable_id().getId());
+                orderDTO.setId(order.getId());
+                orderDTO.setLocalDateTime(order.getLocalDate());
+                orderDTO.setFood_id(order.getFood_id());
+                orderDTO.setDrink_id(order.getDrink_id());
+                orderDTO.setPayed(order.isPayed());
+                orderDTO.setTable_id(order.getTable_id().getId());
                     ordersList.add(index,orderDTO);
                     index++;
             }

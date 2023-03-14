@@ -39,14 +39,14 @@ public class FoodsController {
         }
     }
     @PostMapping
-    public ResponseEntity<Object> createDish(@Valid @RequestBody Foods food) {
+    public Boolean createDish(@Valid @RequestBody Foods food) {
         Optional<Foods> result= foodsRepository.findById(food.getId());
         if (result.isEmpty()){
             foodsRepository.save(food);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,("Dish not correct"));
         }
-        return ResponseEntity.ok("Dish created");
+        return true;
     }
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateDish(@PathVariable Integer id,@Valid @RequestBody Foods food ) {

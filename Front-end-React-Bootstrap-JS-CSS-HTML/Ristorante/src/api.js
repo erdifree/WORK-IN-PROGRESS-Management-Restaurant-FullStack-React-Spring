@@ -34,7 +34,7 @@ export const getOrder = async (type) => {
 export const getOrderDTO = async (type) => {
   try {
     const response = await fetch(
-      `${BASE_URL_USERS}/orders/orderdto/get?flag=` + type
+      `${BASE_URL_USERS}/orders/orderdto/get?flag=false` 
     );
     const data = await response.json();
     return { ok: response.ok, data: data };

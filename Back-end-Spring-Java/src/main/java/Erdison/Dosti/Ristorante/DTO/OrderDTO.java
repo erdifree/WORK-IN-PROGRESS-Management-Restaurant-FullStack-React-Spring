@@ -20,15 +20,7 @@ public  class OrderDTO  {
     private int table_id;
 
 /*Costructor*/
-    public OrderDTO(int id, LocalDateTime localDateTime, int seats, List<Foods> food_id, List<Drinks> drink_id, boolean payed, int table_id) {
-        this.id = id;
-        this.localDateTime = localDateTime;
-        this.seats = seats;
-        this.food_id = food_id;
-        this.drink_id = drink_id;
-        this.payed = payed;
-        this.table_id = table_id;
-    }
+  
 
     public  OrderDTO() {
     }

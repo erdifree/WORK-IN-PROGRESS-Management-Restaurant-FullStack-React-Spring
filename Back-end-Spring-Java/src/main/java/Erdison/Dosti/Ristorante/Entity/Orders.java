@@ -10,6 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +23,7 @@ public class Orders {
     private int id;
 
 
-    private LocalDate localDate;
+    private LocalDateTime localDate;
 
     @Column(columnDefinition = "BOOLEAN")
     private boolean isPayed;
@@ -55,11 +56,11 @@ public class Orders {
         this.id = id;
     }
 
-    public LocalDate getLocalDate() {
+    public LocalDateTime getLocalDate() {
         return localDate;
     }
 
-    public void setLocalDate(LocalDate localDate) {
+    public void setLocalDate(LocalDateTime localDate) {
         this.localDate = localDate;
     }
 

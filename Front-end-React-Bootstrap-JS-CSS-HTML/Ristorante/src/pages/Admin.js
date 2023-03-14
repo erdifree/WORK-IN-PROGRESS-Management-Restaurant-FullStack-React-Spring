@@ -46,25 +46,6 @@ export const Admin = () => {
 
         <Col xs={12} md={6} lg={4}>
           <Link
-            //to={`/table/primo`}
-            className=" text-decoration-none text-reset text-center"
-          >
-            <Card style={{ width: "18rem" }} className="my-5">
-              <Card.Img
-                variant="top"
-                src={logoGestionePiatti}
-                style={{ height: "14rem" }}
-              />
-              <Card.Body>
-                <Card.Title>
-                  <ModalInsert />
-                </Card.Title>
-              </Card.Body>
-            </Card>
-          </Link>
-        </Col>
-        <Col xs={12} md={6} lg={4}>
-          <Link
             to={`/managmentPaymentPage`}
             className=" text-decoration-none text-reset text-center"
           >
@@ -82,7 +63,7 @@ export const Admin = () => {
         </Col>
         <Col xs={12} md={6} lg={4}>
           <Link
-            to={`/table/dessert`}
+            to={`/table/Managmentyourprodacts`}
             className=" text-decoration-none text-reset text-center"
           >
             <Card style={{ width: "18rem" }} className="my-5">
@@ -92,7 +73,7 @@ export const Admin = () => {
                 style={{ height: "14rem" }}
               />
               <Card.Body>
-                <Card.Title>Managment Wine&Drink</Card.Title>
+                <Card.Title>Managment Product</Card.Title>
               </Card.Body>
             </Card>
           </Link>

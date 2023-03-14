@@ -4,11 +4,18 @@ import { useState, useEffect } from "react";
 import { BsFillPatchCheckFill, BsClipboardCheck } from "react-icons/bs";
 import { updatePayment } from "../api";
 
-export const ModalOrder = ({ getOrder, update }) => {
-  const [show, setShow] = useState(false);
+export const ModalOrder = ({
+  getOrder,
+  update,
+  show,
+  handleShow,
+  handleClose,
+  
+}) => {
+  /*const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => setShow(true);*/
   console.log("Id che mi serveeeeeee", getOrder.id);
   const flag = false;
 
@@ -29,9 +36,6 @@ export const ModalOrder = ({ getOrder, update }) => {
     <>
       {getOrder.payed === flag ? (
         <>
-          <Button variant="primary" onClick={handleShow}>
-            <BsClipboardCheck className="text-light" size={"10px"} />
-          </Button>
           <Modal
             show={show}
             onHide={handleClose}
@@ -42,10 +46,11 @@ export const ModalOrder = ({ getOrder, update }) => {
             </Modal.Header>
             <Modal.Body>
               <div>
-                Id Ordine {getOrder.id} Tavolo:{}
+                Id Ordine {getOrder.id}
+                <div>Tavolo:{getOrder.table_id}</div>
               </div>
               <hr />
-              <div> Confermato il: {getOrder.localDate}</div>
+              <div> Confermato il: {getOrder.localDateTime}</div>
               <hr />
 
               <div>

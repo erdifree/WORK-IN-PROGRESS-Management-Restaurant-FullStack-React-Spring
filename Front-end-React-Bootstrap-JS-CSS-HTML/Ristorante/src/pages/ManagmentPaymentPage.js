@@ -6,30 +6,39 @@ import { Sidebar } from "../components/Sidebar";
 export const ManagmentPaymentPage = () => {
   const [data, setData] = useState([]);
   const [order, setOrder] = useState({ payed: true });
-   const [dataDto, setDataDto] = useState([]);
-
+  const [dataDto, setDataDto] = useState([]);
 
   const loadOrders = async () => {
     const result = await getOrder("false");
-    console.log(result.data);
-    setData(result.data);
-   
+    if (result.ok) {
+      setData(result.data);
+    } else {
+      console.log(result.data, "Errroreeee");
+    }
   };
 
   const loadOrdersDTO = async () => {
     const result = await getOrderDTO("false");
-    console.log(result.data);
-    setDataDto(result.data);
+    if (result.ok) {
+      setDataDto(result.data);
+    } else {
+      console.log(result.data);
+    }
   };
   const updatePayment = async (id) => {
     const result = await updatePaymentApi(order, id);
-    loadOrders();
+
+       if (result.ok) {
+         setDataDto(result.data);
+       } else {
+         console.log(result.data);
+       }
+    loadOrdersDTO();
   };
- 
+
   useEffect(() => {
-     loadOrdersDTO();
     loadOrders();
-    
+    loadOrdersDTO();
   }, []);
 
   return (

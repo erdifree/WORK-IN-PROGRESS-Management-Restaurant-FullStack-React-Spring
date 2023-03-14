@@ -46,13 +46,15 @@ export const Table = ({ table }) => {
         <Card className="c_task" style={{ width: "18rem" }}>
           <Card.Img variant="top" src={imgTavolo} />
           <Card.Body>
-            <div>{table.name}</div>
+            <h3>{table.name}
+            <Button
+              hidden={stateButton}
+              onClick={funcedit}
+              className="btn btn-sm"
+            >
+              <BsClipboardCheck className="text-light" size={"10px"} />
+            </Button></h3>
           </Card.Body>
-          <Card.Footer>
-            <Button hidden={stateButton} onClick={funcedit}>
-              edit
-            </Button>
-          </Card.Footer>
         </Card>
       </Link>
     </>

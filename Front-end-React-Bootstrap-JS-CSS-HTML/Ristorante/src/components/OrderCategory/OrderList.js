@@ -1,10 +1,17 @@
 import { Order } from "./Order";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Alert } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
-export const OrderList = ({ data = [],dataDto=[], update, payed, deleteOrder }) => {
-console.log(" ordini dataDTO di orderlist", dataDto);
+export const OrderList = ({
+  data = [],
+  dataDto = [],
+  update,
+  payed,
+  deleteOrder,
+}) => {
+  console.log(" ordini dataDTO di orderlist", dataDto);
   console.log(" ordini data di orderlist", data);
   const flag = true;
+
   return (
     <>
       {payed ? (
@@ -32,13 +39,19 @@ console.log(" ordini dataDTO di orderlist", dataDto);
         </Row>
       ) : (
         <Row className="gy-3 pt-5 mt-5">
-          {dataDto.map((el) => {
-            return (
-              <Col xs={4} key={el.id}>
-                <Order getOrderList={el} update={update} dto={el} />
-              </Col>
-            );
-          })}
+          {dataDto.length !== 0 ? (
+            <>
+              {dataDto.map((el) => {
+                return (
+                  <Col xs={4} key={el.id}>
+                    <Order getOrderList={el} update={update} dto={el} />
+                  </Col>
+                );
+              })}
+            </>
+          ) : (
+            <Alert variant="info" className=" text-center text-dark text-uppercase">Non ci sono Ordini Aperti</Alert>
+          )}
         </Row>
       )}
     </>

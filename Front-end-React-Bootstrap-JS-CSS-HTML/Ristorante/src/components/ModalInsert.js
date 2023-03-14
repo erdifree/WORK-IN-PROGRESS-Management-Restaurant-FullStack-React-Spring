@@ -1,15 +1,16 @@
-import { postFoodApi,putOrderApi,deliteFoodApi } from "../api";
+import { postFoodApi, putOrderApi, deliteFoodApi } from "../api";
 import { useState, useEffect } from "react";
 import { BsFillPencilFill, BsTrash } from "react-icons/bs";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-export const ModalInsert = ({ data }) => {
+export const ModalInsert = ({ showModal, closeModal, type }) => {
+  console.log(type)
   const defaultInputState = {
     img: "",
     name: "",
-    description: "",
+    description:"",
     price: "",
     type: "",
   };
@@ -18,10 +19,7 @@ export const ModalInsert = ({ data }) => {
   const [data1, setData1] = useState([]);
   const [inputErrors, setInputErrors] = useState({});
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  // validazioni per i campi della form
+  // Validation  form
   const validate = (inputObject) => {
     const errorObj = {};
     if (inputObject.name === "") {
@@ -30,8 +28,9 @@ export const ModalInsert = ({ data }) => {
     if (inputObject.image === "") {
       errorObj.image = "Brand image is mandatory";
     }
-    if (inputObject.yearOfFondation < 1882) {
-      errorObj.yearOfFondation = "The first Brand was born in 1883";
+    if (inputObject.yearOfFondation < 0) {
+      errorObj.yearOfFondation =
+        " thet lower price of product is  hight then 0 euro";
     }
     return errorObj;
   };
@@ -70,24 +69,25 @@ export const ModalInsert = ({ data }) => {
     }
   };
 
-  useEffect(() => {}, []);
   return (
     <>
-    
       <div className="container mt-3 fw-bold" id="admin">
-    
-        <button onClick={handleShow}>Insert a new Dish </button>
-        <Modal show={show} onHide={handleClose}>
+        <Modal
+          show={showModal}
+          onHide={() => {
+            closeModal();
+          }}
+        >
           <Modal.Header closeButton>
-            <Modal.Title>Enter all fields</Modal.Title>
+            <Modal.Title>{type}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="name">
-                <Form.Label>Brand's name</Form.Label>
+                <Form.Label>Name Dish</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Alfa, Audi, Ferrari ecc.."
+                  placeholder="Name of Product"
                   value={inputState.name}
                   onChange={(e) => {
                     handleInputChange(e.target.id, e.target.value);
@@ -99,46 +99,81 @@ export const ModalInsert = ({ data }) => {
                   {inputErrors.name}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="image">
-                <Form.Label>Brand's image link</Form.Label>
+              <Form.Group className="mb-3" controlId="img">
+                <Form.Label>Pictur of Dish</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="http//: ..."
-                  value={inputState.image}
+                  value={inputState.img}
                   onChange={(e) => {
                     handleInputChange(e.target.id, e.target.value);
                   }}
-                  isInvalid={inputErrors.image ? true : false}
+                  isInvalid={inputErrors.img ? true : false}
                   autoFocus
                 />
                 <Form.Control.Feedback type="invalid">
-                  {inputErrors.image}
+                  {inputErrors.img}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Form.Group className="mb-3" controlId="yearOfFondation">
-                <Form.Label>Year of Fondation</Form.Label>
+              <Form.Group className="mb-3" controlId="price">
+                <Form.Label>Price</Form.Label>
                 <Form.Control
                   type="number"
-                  placeholder="Year"
-                  value={inputState.yearOfFondation}
+                  placeholder="Price"
+                  value={inputState.price}
                   onChange={(e) => {
                     handleInputChange(e.target.id, e.target.value);
                   }}
-                  isInvalid={inputErrors.yearOfFondation ? true : false}
+                  isInvalid={inputErrors.price ? true : false}
                   autoFocus
                 />
                 <Form.Control.Feedback type="invalid">
-                  {inputErrors.yearOfFondation}
+                  {inputErrors.price}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Button variant="primary" type="submit" onClick={handleClose}>
-                Save Changes
+              <Form.Group className="mb-3" controlId="description">
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Description"
+                  value={inputState.description}
+                  onChange={(e) => {
+                    handleInputChange(e.target.id, e.target.value);
+                  }}
+                  isInvalid={inputErrors.description ? true : false}
+                  autoFocus
+                />
+                <Form.Control.Feedback type="invalid">
+                  {inputErrors.description}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="type">
+                <Form.Label>{type}</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={inputState.type}
+                  onChange={(e) => {
+                    handleInputChange(e.target.id, e.target.value);
+                  }}
+                  isInvalid={inputErrors.description ? true : false}
+                  autoFocus
+                />
+                <Form.Control.Feedback type="invalid">
+                  {inputErrors.description}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Button
+                variant="primary"
+                type="submit"
+                onClick={() => {
+                  closeModal();
+                }}
+              >
+                Save Product
               </Button>
             </Form>
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary">Close</Button>
-          </Modal.Footer>
         </Modal>
       </div>
     </>

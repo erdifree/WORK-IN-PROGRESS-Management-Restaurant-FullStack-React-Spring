@@ -3,6 +3,7 @@ VALUES ("vinoo rosso", 'https://www.colderove.it/932-thickbox_default/rosso-di-c
 ("vinoo rosso", 'https://www.colderove.it/932-thickbox_default/rosso-di-casa-mia.jpg', 'Vino rosso',23,'bianco'),
 ("vinoo rosso", 'https://www.colderove.it/932-thickbox_default/rosso-di-casa-mia.jpg', 'Fanta',23,'analcolica'),
  ("Forte", 'https://www.colderove.it/932-thickbox_default/rosso-di-casa-mia.jpg', 'Vino rosso',33,'rosso');
+  ("Forte", 'https://www.coca-colaitalia.it/content/dam/one/it/it/brand-header-mobile/900x600/cocacola-original-taste-desktop-900x600.jpg', 'Coca Cola',33,'analcolico');
 
 
  INSERT INTO foods (description,img, name,price,type)
