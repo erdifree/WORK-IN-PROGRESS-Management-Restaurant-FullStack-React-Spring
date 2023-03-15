@@ -10,4 +10,5 @@ import java.util.Set;
 
 public interface DrinksRepository extends JpaRepository<Drinks,Integer> {
     List<Drinks>findByTypeContainingIgnoreCaseOrNameContainingIgnoreCase(String type,String name);
+    List<Drinks> findByType(String type);
 }

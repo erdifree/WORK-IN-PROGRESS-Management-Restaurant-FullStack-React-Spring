@@ -27,6 +27,7 @@ public class Foods {
     private String type;
 
 
+
   @ManyToMany(mappedBy = "food_id")
     @JsonIgnore
     private Set<Orders> orders;

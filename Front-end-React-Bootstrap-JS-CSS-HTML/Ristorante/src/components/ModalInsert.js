@@ -1,4 +1,4 @@
-import { postFoodApi, putOrderApi, deliteFoodApi } from "../api";
+import { postFoodApi, putOrderApi, deliteFoodApi,postDrinkApi } from "../api";
 import { useState, useEffect } from "react";
 import { BsFillPencilFill, BsTrash } from "react-icons/bs";
 import Button from "react-bootstrap/Button";
@@ -6,11 +6,10 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
 export const ModalInsert = ({ showModal, closeModal, type }) => {
-  console.log(type)
   const defaultInputState = {
     img: "",
     name: "",
-    description:"",
+    description: "",
     price: "",
     type: "",
   };
@@ -23,14 +22,19 @@ export const ModalInsert = ({ showModal, closeModal, type }) => {
   const validate = (inputObject) => {
     const errorObj = {};
     if (inputObject.name === "") {
-      errorObj.name = "Brand name is mandatory";
+      errorObj.name = "Food name is mandatory";
     }
-    if (inputObject.image === "") {
-      errorObj.image = "Brand image is mandatory";
+    if (inputObject.img === "") {
+      errorObj.img = "Food image is mandatory";
     }
-    if (inputObject.yearOfFondation < 0) {
-      errorObj.yearOfFondation =
-        " thet lower price of product is  hight then 0 euro";
+    if (inputObject.price <= 5.0) {
+      errorObj.price = " Price i higter then  5.00 euro";
+    }
+    if (inputObject.description === "") {
+      errorObj.description = "Food description is mandatory";
+    }
+    if (inputObject.type === "") {
+      errorObj.type = "Food type is mandatory";
     }
     return errorObj;
   };
@@ -45,25 +49,35 @@ export const ModalInsert = ({ showModal, closeModal, type }) => {
     event.preventDefault();
     const errorObject = validate(inputState);
     if (Object.keys(errorObject).length === 0) {
-      const response = await postFoodApi(inputState);
-      if (response.ok) {
-        setInputErrors({});
-        setInputState(defaultInputState);
-      } else {
-        console.log("error");
-      }
+      console.log("sono input per inserd del prodotto", inputState);
+       if (
+           inputState.type === "Rosso" ||
+           inputState.type ==="Bianco" ||
+           inputState.type === "Analcolico"
+         ){
+          const response = await postDrinkApi(inputState);
+          console.log("rrrrrrrrrrrrrrrrrrrrrrr",response);
+            if (response.ok) {
+              setInputState(defaultInputState);
+            }
+         }else{
+         const response = await postFoodApi(inputState);
+           if (response.ok) {
+             setInputState(defaultInputState);
+           }
+         }
     } else {
       setInputErrors(errorObject);
     }
   };
 
-  const handleDeleteBrand = async (data) => {
+  const handleDeliteFood = async (data) => {
     const result = await deliteFoodApi(data.id);
     if (result.ok) {
-      const updatedBrand = data.filter((el) => {
+      const updateFood = data.filter((el) => {
         return el.id !== data.id;
       });
-      setData1(updatedBrand);
+      setData1(updateFood);
     } else {
       console.log("error");
     }
@@ -152,7 +166,7 @@ export const ModalInsert = ({ showModal, closeModal, type }) => {
                 <Form.Label>{type}</Form.Label>
                 <Form.Control
                   type="text"
-                  value={inputState.type}
+                  value={(inputState.type = type)}
                   onChange={(e) => {
                     handleInputChange(e.target.id, e.target.value);
                   }}
@@ -160,17 +174,12 @@ export const ModalInsert = ({ showModal, closeModal, type }) => {
                   autoFocus
                 />
                 <Form.Control.Feedback type="invalid">
-                  {inputErrors.description}
+                  {inputErrors.type}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Button
-                variant="primary"
-                type="submit"
-                onClick={() => {
-                  closeModal();
-                }}
-              >
-                Save Product
+              <Button variant="primary" type="submit">
+                Save Product 
+
               </Button>
             </Form>
           </Modal.Body>

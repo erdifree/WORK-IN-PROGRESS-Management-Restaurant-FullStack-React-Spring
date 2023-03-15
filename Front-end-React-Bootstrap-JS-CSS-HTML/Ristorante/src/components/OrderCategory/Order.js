@@ -5,17 +5,18 @@ import {
   BsClipboardCheck,
   BsClipboardX,
 } from "react-icons/bs";
-import { ModalOrder } from "../ModalOrder";
+import { ModalOrder } from "../NavComponent/ModalOrder";
+import { ModalOrderDTO } from "../NavComponent/ModalOrderDTO";
 import Table from "react-bootstrap/Table";
 import { Row, Col } from "react-bootstrap";
 import LogoOrdineCassa from "../img/LogoOrdineCassa.jpg";
 import { useState } from "react";
-export const Order = ({ getOrderList, update, deleteOrder, dto }) => {
+export const Order = ({ getOrderList, deleteOrder, dataDto, updateDto }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  console.log("DTOOOOOOOOOOOOO", dto);
-  console.log("DTaaaaaaaaaa", getOrderList.id);
+  console.log("ORDER DTO SINGOLO", dataDto);
+  console.log("ORDER SINGOLO", getOrderList.id);
   const flag = false;
   return (
     <>
@@ -28,10 +29,12 @@ export const Order = ({ getOrderList, update, deleteOrder, dto }) => {
             <Card.Img variant="top" src={LogoOrdineCassa} />
           </Button>
           <Card.Body>
-            <h4 className=" text-center">Ordine Tavolo N: {dto.table_id}</h4>
-            <ModalOrder
-              getOrder={getOrderList}
-              update={update}
+            <h4 className=" text-center">
+              Ordine Tavolo N: {dataDto.table_id}
+            </h4>
+            <ModalOrderDTO
+              dataDto={dataDto}
+              updateDto={updateDto}
               show={show}
               handleShow={handleShow}
               handleClose={handleClose}
@@ -54,7 +57,6 @@ export const Order = ({ getOrderList, update, deleteOrder, dto }) => {
             <Button variant="light">
               <ModalOrder
                 getOrder={getOrderList}
-                update={update}
                 show={show}
                 handleShow={handleShow}
                 handleClose={handleClose}

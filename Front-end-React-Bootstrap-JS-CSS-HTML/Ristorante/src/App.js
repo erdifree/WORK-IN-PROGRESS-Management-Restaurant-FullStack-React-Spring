@@ -5,11 +5,13 @@ import { TablePage } from "./pages/TablePage";
 import { Admin } from "./pages/Admin";
 import { Menu } from "./components/category/Menu";
 import { GetFoodByCategory } from "./pages/GetFoodByCategory";
+import { GetDrinksByCategory } from "./pages/GetDrinksByCategory";
 import { useState } from "react";
 import { Login } from "./pages/LoginPage";
 import { OrderPage } from "./pages/OrderPage";
 import { OrderCategory } from "./components/category/OrderCategory";
 import { ManagmentPaymentPage } from "./pages/ManagmentPaymentPage";
+import { MenuDrinks } from "./components/category/MenuDrinks";
 
 const App = () => {
   const [cartProducts, setCartProducts] = useState([]);
@@ -39,7 +41,7 @@ const App = () => {
       return true;
     });
     newCart.forEach((el) => {
-      if (el.id === product.id) {
+      if (el.id === product.id && el.type === product.type) {
         el.quantity++;
         found = true;
       }
@@ -52,7 +54,8 @@ const App = () => {
         quantity: 1,
         description: product.description,
         price: product.price,
-        index: cartProducts.length,
+        type:product.type
+
       };
       const newCart2 = [...newCart, newProduct];
       setCartProducts(newCart2);
@@ -67,7 +70,7 @@ const App = () => {
   return (
     <Container>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage  />} />
         <Route path="/log-in" element={<Login />} />
         <Route path="/order/:payed/" element={<OrderPage />} />
         <Route
@@ -92,6 +95,17 @@ const App = () => {
           }
         />
         <Route
+          path="/table/:tableId/drinkscategory"
+          element={
+            <MenuDrinks
+              add={handleAddClick}
+              del={handleDeleteClick}
+              cartProducts={cartProducts}
+              reset={handleReset}
+            />
+          }
+        />
+        <Route
           path="/table/:tableId/order-id/:elId"
           element={
             <Menu
@@ -107,6 +121,16 @@ const App = () => {
           element={
             <GetFoodByCategory
               addFood={handleAddClick}
+              del={handleDeleteClick}
+              cartProducts={cartProducts}
+            />
+          }
+        />
+        <Route
+          path="/table/:tableId/drinkscategory/:type"
+          element={
+            <GetDrinksByCategory
+              addDrink={handleAddClick}
               del={handleDeleteClick}
               cartProducts={cartProducts}
             />

@@ -4,12 +4,12 @@ import Table from "react-bootstrap/Table";
 export const OrderList = ({
   data = [],
   dataDto = [],
-  update,
+  updateDto,
   payed,
   deleteOrder,
 }) => {
-  console.log(" ordini dataDTO di orderlist", dataDto);
-  console.log(" ordini data di orderlist", data);
+  console.log(" ORDERT DT", dataDto);
+  console.log(" ORDERLIST", data);
   const flag = true;
 
   return (
@@ -26,13 +26,7 @@ export const OrderList = ({
             </thead>
             <tbody className=" text-bg-light text-center">
               {data.map((el) => {
-                return (
-                  <Order
-                    getOrderList={el}
-                    update={update}
-                    deleteOrder={deleteOrder}
-                  />
-                );
+                return <Order getOrderList={el} deleteOrder={deleteOrder} />;
               })}
             </tbody>
           </Table>
@@ -44,13 +38,18 @@ export const OrderList = ({
               {dataDto.map((el) => {
                 return (
                   <Col xs={4} key={el.id}>
-                    <Order getOrderList={el} update={update} dto={el} />
+                    <Order getOrderList={el} updateDto={updateDto} dataDto={el} />
                   </Col>
                 );
               })}
             </>
           ) : (
-            <Alert variant="info" className=" text-center text-dark text-uppercase">Non ci sono Ordini Aperti</Alert>
+            <Alert
+              variant="info"
+              className=" text-center text-dark text-uppercase"
+            >
+              Non ci sono Ordini Aperti
+            </Alert>
           )}
         </Row>
       )}

@@ -9,33 +9,64 @@ const Cart = ({ add, del, cartProducts, tableId, reset, elId }) => {
   const [showList, setShowList] = useState(false);
   const [show, setShow] = useState(false);
   const [order, setOrder] = useState({});
-
+  const [drinks, setDrinks] = useState([{}]);
+  const [foods, setFoods] = useState([{}]);
   const navigate = useNavigate();
 
   const handlePost = async (order, id, orderId) => {
-    orderId == undefined
+    orderId === undefined
       ? postOrderApi(order, id)
       : putOrderApi(order, orderId);
-    /* const result = await postOrderApi(order, id);
-    if (result.ok) {
-      console.log("Ordine  Confermoato e Registrato");
-    }*/
+  
   };
   /*Find all list food  in cart and prepare a arry with id to insert in order body */
-  const listFood = () => {
-    let foodList = [];
+    const listfood = () => {
+      let foodlist = [];
+      cartProducts.map((el) => {
+        if (
+          el.type.toLowerCase() !== "rosso" &&
+          el.type.toLowerCase() !== "bianco" &&
+          el.type.toLowerCase() !== "analcolico"
+        ) {
+
+            for (let index = 0; index < el.quantity; index++) {
+              foodlist.push({ id: el.id });
+            }
+       
+       
+        }
+      });
+      return foodlist;
+    };
+
+  /*Find all list food  in cart and prepare a arry with id to insert in order body */
+  const listDrink = () => {
+      let drinkList = [];
     cartProducts.map((el) => {
-      foodList.push({ id: el.id });
+         if (
+           el.type.toLowerCase() === "rosso" ||
+           el.type.toLowerCase() === "bianco" ||
+           el.type.toLowerCase() === "analcolico"
+         ) {
+         for (let index = 0; index < el.quantity; index++) {
+          drinkList.push({ id: el.id });
+         }
+          
+         }
+   
     });
-    return foodList;
+    return drinkList;
   };
   /**  function that create a body of Object ready to pass to the Rest service post */
   const createOrder = () => {
+   
+    console.log("Sono lista fooooooddddssss",foods);
+    console.log("Sono lista fooooooddddssss", drinks);
     const order = {
       localDate: new Date(),
       seats: 2,
-      food_id: listFood(),
-      drink_id: listFood(),
+      food_id: listfood(),
+      drink_id: listDrink(),
       table_id: parseInt(tableId),
       payed: false,
     };
@@ -45,8 +76,9 @@ const Cart = ({ add, del, cartProducts, tableId, reset, elId }) => {
 
   const updateOrder = () => {
     const order = {
-      food_id: listFood(),
-      drink_id: listFood(),
+      food_id: listfood(),
+      drink_id: listDrink(),
+      seats: 2,
       payed: false,
     };
     setOrder(order);

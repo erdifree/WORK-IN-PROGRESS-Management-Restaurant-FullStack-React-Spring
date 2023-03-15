@@ -6,12 +6,12 @@ import "../components/css/style.css";
 import { MdAccountCircle } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Sidebar } from "../components/Sidebar";
-
+import { useEffect, useState } from "react";
 
 export const Homepage = () => {
- return (
-   <div>
-   <Sidebar/>
-   </div>
- );
+  return (
+    <div>
+      <Sidebar />
+    </div>
+  );
 };

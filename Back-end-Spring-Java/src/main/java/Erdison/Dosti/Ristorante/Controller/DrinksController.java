@@ -2,6 +2,7 @@ package Erdison.Dosti.Ristorante.Controller;
 
 
 import Erdison.Dosti.Ristorante.Entity.Drinks;
+import Erdison.Dosti.Ristorante.Entity.Foods;
 import Erdison.Dosti.Ristorante.Repository.DrinksRepository;
 import jakarta.validation.Valid;
 import org.apache.logging.log4j.util.Strings;
@@ -23,8 +24,8 @@ public class DrinksController {
     @Autowired
    DrinksRepository drinksRepository;
 
-   @GetMapping
-    public List<Drinks> getDrinksByType(@RequestParam (name="type",required = false)String str) {
+    @GetMapping
+    public List<Drinks> getDishByType(@RequestParam(name="type",required = false)String str) {
         if(Strings.isBlank(str)){
             return drinksRepository.findAll();
         }else{
@@ -32,16 +33,25 @@ public class DrinksController {
         }
     }
 
+    @GetMapping("/category")
+    public List<Drinks> getByType(@RequestParam(name="type",required = false)String str) {
+        if(Strings.isBlank(str)){
+            return drinksRepository.findAll();
+        }else{
+            return drinksRepository.findByType(str);
+        }
+    }
+
 
     @PostMapping
-    public ResponseEntity<Object> createDrink(@Valid @RequestBody Drinks drinks) {
+    public Boolean createDrink(@Valid @RequestBody Drinks drinks) {
         Optional<Drinks> result= drinksRepository.findById(drinks.getId());
         if (result.isEmpty()){
             drinksRepository.save(drinks);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,("drink not correct"));
         }
-        return ResponseEntity.ok("Drink created");
+        return true;
     }
     @PutMapping("/{id}")
     public ResponseEntity<Object> updateDrink(@PathVariable Integer id,@Valid @RequestBody Drinks drinks ) {

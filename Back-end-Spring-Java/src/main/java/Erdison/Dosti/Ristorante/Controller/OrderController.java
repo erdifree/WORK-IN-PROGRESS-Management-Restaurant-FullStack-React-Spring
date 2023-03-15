@@ -68,6 +68,7 @@ public class OrderController {
                 orderDTO.setLocalDateTime(order.getLocalDate());
                 orderDTO.setFood_id(order.getFood_id());
                 orderDTO.setDrink_id(order.getDrink_id());
+                orderDTO.setSeats(order.getSeats());
                 orderDTO.setPayed(order.isPayed());
                 orderDTO.setTable_id(order.getTable_id().getId());
                     ordersList.add(index,orderDTO);
@@ -103,7 +104,7 @@ public class OrderController {
 
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateOrder(@PathVariable Integer id, @RequestBody Orders orders ) {
+    public Boolean updateOrder(@PathVariable Integer id, @RequestBody Orders orders ) {
         Optional<Orders> result= orderRepository.findById(id);
         if(!result.isEmpty()){
             Orders newOrder=result.get();
@@ -133,7 +134,7 @@ public class OrderController {
         }else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Dish Not Found");
         }
-        return ResponseEntity.ok("Order updated");
+        return true;
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deliteOrder(@PathVariable Integer id){

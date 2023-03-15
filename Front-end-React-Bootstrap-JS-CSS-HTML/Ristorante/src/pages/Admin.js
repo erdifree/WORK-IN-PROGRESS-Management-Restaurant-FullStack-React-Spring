@@ -6,14 +6,11 @@ import { Sidebar } from "../components/Sidebar";
 import Container from "react-bootstrap/Container";
 import { Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { AdminDish } from "./AdminDish";
-import { getFoods } from "../api";
+
 import { Card } from "react-bootstrap";
 import Order from "../components/img/ordermanagment.jpg";
-import logoGestionePiatti from "../components/img/logoGestionePiatti.avif";
 import LogoCassa from "../components/img/LogoCassa.jpg";
 import LogoVino from "../components/img/LogoVino.jpg";
-import { ModalOrder } from "../components/ModalOrder";
 import { postFoodApi } from "../api";
 import { updatePaymentApi } from "../api";
 import { ModalInsert } from "../components/ModalInsert";

@@ -6,8 +6,7 @@ export const OrderCategory = () => {
     <>
       <Sidebar />
       <Row className=" d-flex  justify-content-between pt-5 ">
-        <Col lg={10}>
-          <Row className=" d-flex justify-content-end">
+      
             <Col xs={12} md={6} lg={4}>
               <Link
                 to="/managmentPaymentPage"
@@ -35,8 +34,7 @@ export const OrderCategory = () => {
               </Link>
             </Col>
           </Row>
-        </Col>
-      </Row>
+     
     </>
   );
 };

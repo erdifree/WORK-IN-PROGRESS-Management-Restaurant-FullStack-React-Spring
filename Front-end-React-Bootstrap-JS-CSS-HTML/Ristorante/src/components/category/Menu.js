@@ -11,10 +11,15 @@ import {
 
 import { BiDish } from "react-icons/bi";
 import Antipasto from "../img/Antipasti.avif";
+import LogoInsertAntipasto from "../img/LogoInsertAntipasto.png";
 import Primo from "../img/Primo.jpg";
+import LogoPrimoInsert from "../img/LogoPrimoInsert.jpg";
 import Secondo from "../img/Secondo.jpg";
+import LogoSecondoInsert from "../img/LogoSecondoInsert.webp";
 import Bevande from "../img/Bevande.jpg";
+import LogoDrinkInsert from "../img/LogoDrinkInsert.webp";
 import Dessert from "../img/dessert.jpg";
+import LogoDessertInsert from "../img/LogoDessertInsert.jpg";
 import Cart from "../Cart";
 import { ModalInsert } from "../ModalInsert";
 export const Menu = ({ edit, add, del, cartProducts, reset }) => {
@@ -23,12 +28,11 @@ export const Menu = ({ edit, add, del, cartProducts, reset }) => {
   const [show, setShow] = useState(false);
   const[type,setType]= useState("")
 
+  const navigate=useNavigate();
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-
   const handleChangeType=(el)=>{
     setType(el)
-
   }
 
   return (
@@ -44,7 +48,11 @@ export const Menu = ({ edit, add, del, cartProducts, reset }) => {
                   handleChangeType("Antipasto");
                 }}
               >
-                <Card.Img variant="top" src={Antipasto} />
+                <Card.Img
+                  variant="top"
+                  src={LogoInsertAntipasto}
+                  style={{ width: "18rem", height: "12rem" }}
+                />
               </Button>
               <Card.Body>
                 <Card.Title>
@@ -68,7 +76,11 @@ export const Menu = ({ edit, add, del, cartProducts, reset }) => {
                   handleChangeType("Primo");
                 }}
               >
-                <Card.Img variant="top" src={Primo} />
+                <Card.Img
+                  variant="top"
+                  src={LogoPrimoInsert}
+                  style={{ width: "18rem", height: "12rem" }}
+                />
               </Button>
               <Card.Body>
                 <Card.Title>
@@ -87,7 +99,11 @@ export const Menu = ({ edit, add, del, cartProducts, reset }) => {
                   handleChangeType("Secondo");
                 }}
               >
-                <Card.Img variant="top" src={Secondo} />
+                <Card.Img
+                  variant="top"
+                  src={LogoSecondoInsert}
+                  style={{ width: "18rem", height: "12rem" }}
+                />
               </Button>
               <Card.Body>
                 <Card.Title>
@@ -108,7 +124,7 @@ export const Menu = ({ edit, add, del, cartProducts, reset }) => {
               >
                 <Card.Img
                   variant="top"
-                  src={Dessert}
+                  src={LogoDessertInsert}
                   style={{ width: "18rem", height: "12rem" }}
                 />
               </Button>
@@ -125,13 +141,12 @@ export const Menu = ({ edit, add, del, cartProducts, reset }) => {
               <Button
                 className=" btn-dark accordion-button"
                 onClick={() => {
-                  handleShow();
-                  handleChangeType("WINE & DRINK");
+                  navigate("/table/managment-drink/drinkscategory");
                 }}
               >
                 <Card.Img
                   variant="top"
-                  src={Bevande}
+                  src={LogoDrinkInsert}
                   style={{ width: "18rem", height: "12rem" }}
                 />
               </Button>
@@ -220,7 +235,7 @@ export const Menu = ({ edit, add, del, cartProducts, reset }) => {
           </Col>
           <Col xs={12} md={6} lg={4}>
             <Link
-              to={`/table/${tableId}/drink`}
+              to={`/table/${tableId}/drinkscategory`}
               className=" text-decoration-none text-reset text-center"
             >
               <Card style={{ width: "18rem" }} className="my-5">

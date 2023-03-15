@@ -88,6 +88,23 @@ export const updatePaymentApi = async (order, id) => {
     return { ok: false, data: error };
   }
 };
+
+
+export const updatePaymentDTOApi = async (order, id) => {
+  try {
+    const response = await fetch(`${BASE_URL_USERS}/orders/update/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(order),
+    });
+    const data = await response.json();
+    return { ok: response.ok, data: data };
+  } catch (error) {
+    return { ok: false, data: error };
+  }
+};
 export const deliteOrderApi = async (orderId) => {
   try {
     const response = await fetch(`${BASE_URL_USERS}/orders/${orderId}`, {
@@ -117,7 +134,7 @@ export const getFoods = async () => {
 
 export const getFoodsByType = async (key) => {
   try {
-    const response = await fetch(BASE_URL_USERS + "/foods" + "?type=" + key);
+    const response = await fetch(BASE_URL_USERS + "/foods/category" + "?type=" + key);
     const data = await response.json();
     return { ok: response.ok, data: data };
   } catch (error) {
@@ -128,7 +145,7 @@ export const getFoodsByType = async (key) => {
 export const deliteFoodApi = async (userId, taskId) => {
   try {
     const response = await fetch(
-      `${BASE_URL_USERS}/${userId}/tasks/${taskId}`,
+      `${BASE_URL_USERS}/${userId}/food/${taskId}`,
       {
         method: "DELETE",
       }
@@ -151,6 +168,62 @@ export const postFoodApi = async (food) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(food),
+    });
+    const data = await response.json();
+    return { ok: response.ok, data: data };
+  } catch (error) {
+    return { ok: false, data: error };
+  }
+};
+
+///////////////Drinks REST SERVICE////////////////////////
+
+export const getDrinks = async () => {
+  try {
+    const response = await fetch(BASE_URL_USERS + "/foods");
+    const data = await response.json();
+    return { ok: response.ok, data: data };
+  } catch (error) {
+    return { ok: false, data: error };
+  }
+};
+
+export const getDrinksByType = async (key) => {
+  try {
+    const response = await fetch(BASE_URL_USERS + "/drinks/category" + "?type=" + key);
+    const data = await response.json();
+    return { ok: response.ok, data: data };
+  } catch (error) {
+    return { ok: false, data: error };
+  }
+};
+
+export const deliteDrinksApi = async (drinkid) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL_USERS}/drink/${drinkid}`,
+      {
+        method: "DELETE",
+      }
+    );
+    if (response.ok) {
+      return { ok: true, data: "Success" };
+    } else {
+      return { ok: false, data: await response.json() };
+    }
+  } catch (error) {
+    return { ok: false, data: error };
+  }
+};
+
+export const postDrinkApi = async (drink) => {
+  try {
+    const response = await fetch(`${BASE_URL_USERS}/drinks`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(drink),
     });
     const data = await response.json();
     return { ok: response.ok, data: data };
