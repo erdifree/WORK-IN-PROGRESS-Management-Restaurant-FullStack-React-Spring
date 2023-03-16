@@ -2,10 +2,15 @@ import { FoodList } from "../components/foodCategory/FoodList";
 import { useState, useEffect } from "react";
 import { getFoodsByType } from "../api";
 import { useParams } from "react-router-dom";
-export const GetFoodByCategory = ({ addFood }) => {
+
+
+const GetFoodByCategory = ({ addFood }) => {
   const [foods, setFoods] = useState([]);
   const { type } = useParams();
-
+  console.log(
+    " LOCALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL",
+    localStorage.getItem("OrderID")
+  );
   console.log("Sono il type", { type });
   console.log("Sono il addfood", { addFood });
 
@@ -13,9 +18,20 @@ export const GetFoodByCategory = ({ addFood }) => {
     const result = await getFoodsByType(type);
     setFoods(result.data);
   };
-  console.log("LISTA PIATTTIIIII", foods);
   useEffect(() => {
     loadFood();
-  },[]);
-  return <FoodList food={foods} addFood={addFood} />;
+  }, []);
+
+  return (
+    <>
+  
+      <FoodList
+        food={foods}
+        addFood={addFood}
+        idOrder={localStorage.getItem("OrderID")}
+      />
+    </>
+  );
 };
+
+export default GetFoodByCategory;

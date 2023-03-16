@@ -2,12 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Card } from "react-bootstrap";
-import {
-  BsFillTrashFill,
-  BsPencilFill,
-  BsClipboardCheck,
-  BsClipboardX,
-} from "react-icons/bs";
+
+import { BiArrowBack } from "react-icons/bi";
+import { IoIosArrowBack } from "react-icons/io";
 
 import { BiDish } from "react-icons/bi";
 import VinoRossoCategory from "../img/VinoRossoCategory.jpg";
@@ -20,17 +17,17 @@ import { ModalInsert } from "../ModalInsert";
 export const MenuDrinks = ({ edit, add, del, cartProducts, reset }) => {
   const { tableId } = useParams();
   const { elId } = useParams();
-  
+
   const [show, setShow] = useState(false);
-  const[type,setType]= useState("")
+  const [type, setType] = useState("");
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-
-  const handleChangeType=(el)=>{
-    setType(el)
-
-  }
+  const navigate = useNavigate();
+ const idOrder=localStorage.getItem("OrderID")
+  const handleChangeType = (el) => {
+    setType(el);
+  };
 
   return (
     <Row>
@@ -106,6 +103,31 @@ export const MenuDrinks = ({ edit, add, del, cartProducts, reset }) => {
               </Card.Body>
             </Card>
           </Col>
+          <Row className=" d-flex justify-content-center fixed-bottom">
+            <Col className=" d-flex justify-content-center">
+              <Button
+                className=" text-light btn-sm  bg-black btn-outline-dark mb-5"
+                size={"32px"}
+                onClick={() => {
+                  navigate("/table/Managmentyourprodacts");
+                }}
+              >
+                <BiArrowBack size={"32px"} />
+                Back
+              </Button>
+            </Col>
+            <Col className=" d-flex justify-content-center">
+              <Button
+                className=" text-light btn-sm  bg-black btn-outline-dark mb-5"
+                size={"32px"}
+                onClick={() => {
+                  navigate("/admin");
+                }}
+              >
+               Admin
+              </Button>
+            </Col>
+          </Row>
         </Row>
       ) : (
         <Row className=" d-flex  justify-content-between justify-content-evenly flex-wrap ">
@@ -157,6 +179,37 @@ export const MenuDrinks = ({ edit, add, del, cartProducts, reset }) => {
               </Card>
             </Link>
           </Col>
+          {idOrder !== null ? (
+            <Row className=" d-flex justify-content-center fixed-bottom">
+              <Col className=" d-flex justify-content-center">
+                <Button
+                  className=" text-light btn-sm  bg-black btn-outline-dark mb-5"
+                  size={"32px"}
+                  onClick={() => {
+                    navigate(`/table/${tableId}/${idOrder}`);
+                  }}
+                >
+                  <BiArrowBack size={"32px"} />
+                  Back
+                </Button>
+              </Col>
+            </Row>
+          ) : (
+            <Row className=" d-flex justify-content-center fixed-bottom">
+              <Col className=" d-flex justify-content-center">
+                <Button
+                  className=" text-light btn-sm  bg-black btn-outline-dark mb-5"
+                  size={"32px"}
+                  onClick={() => {
+                    navigate(`/table/${tableId}`);
+                  }}
+                >
+                  <BiArrowBack size={"32px"} />
+                  Back
+                </Button>
+              </Col>
+            </Row>
+          )}
         </Row>
       )}
     </Row>

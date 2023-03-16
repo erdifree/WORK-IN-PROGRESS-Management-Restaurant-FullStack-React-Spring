@@ -62,6 +62,7 @@ const Cart = ({ add, del, cartProducts, tableId, reset, elId }) => {
    
     console.log("Sono lista fooooooddddssss",foods);
     console.log("Sono lista fooooooddddssss", drinks);
+    
     const order = {
       localDate: new Date(),
       seats: 2,
@@ -153,6 +154,7 @@ const Cart = ({ add, del, cartProducts, tableId, reset, elId }) => {
               onClick={() => {
                 elId === undefined ? createOrder() : updateOrder();
                 reset();
+                localStorage.removeItem("OrderID");
                 navigate("/table");
               }}
             />

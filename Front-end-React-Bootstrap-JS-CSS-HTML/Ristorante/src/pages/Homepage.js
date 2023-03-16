@@ -10,8 +10,20 @@ import { useEffect, useState } from "react";
 
 export const Homepage = () => {
   return (
+    <>
     <div>
       <Sidebar />
+     
     </div>
+    <footer className=" footer fixed-bottom ">
+     <Container  className=" mb-0 bg-black text-white text-center   ">
+        <ul className=" list-unstyled ">
+          Contatti:
+          <li>tel 08016180032</li>
+          <li>cell 3896492143</li>
+          <li>Facebook </li>
+        </ul>
+      </Container>
+      </footer></>
   );
 };

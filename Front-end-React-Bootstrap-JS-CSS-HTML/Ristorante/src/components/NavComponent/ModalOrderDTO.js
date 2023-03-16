@@ -6,8 +6,9 @@ import { BsFillPatchCheckFill, BsClipboardCheck } from "react-icons/bs";
 export const ModalOrderDTO = ({
   dataDto,
   handleClose,
-  updateDto,
+  updatePayDto,
   show,
+  loadOrdersDTO,
 }) => {
   console.log("ID DEL ORDINE DTO CHE DEVO FARE UPDATE DEL PAGAMENTO", dataDto);
   const flag = false;
@@ -80,7 +81,8 @@ export const ModalOrderDTO = ({
             variant="primary"
             onClick={(e) => {
               e.preventDefault();
-              updateDto(dataDto.id);
+              updatePayDto(dataDto.id);
+              loadOrdersDTO();
               handleClose();
             }}
           >

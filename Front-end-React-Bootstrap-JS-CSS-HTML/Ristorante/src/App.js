@@ -4,7 +4,7 @@ import { Homepage } from "./pages/Homepage";
 import { TablePage } from "./pages/TablePage";
 import { Admin } from "./pages/Admin";
 import { Menu } from "./components/category/Menu";
-import { GetFoodByCategory } from "./pages/GetFoodByCategory";
+import GetFoodByCategory from "./pages/GetFoodByCategory.js"
 import { GetDrinksByCategory } from "./pages/GetDrinksByCategory";
 import { useState } from "react";
 import { Login } from "./pages/LoginPage";
@@ -70,7 +70,7 @@ const App = () => {
   return (
     <Container>
       <Routes>
-        <Route path="/" element={<Homepage  />} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/log-in" element={<Login />} />
         <Route path="/order/:payed/" element={<OrderPage />} />
         <Route
@@ -84,7 +84,7 @@ const App = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/order" element={<OrderCategory />} />
         <Route
-          path="/table/:tableId/"
+          path="/table/:tableId"
           element={
             <Menu
               add={handleAddClick}
@@ -106,7 +106,7 @@ const App = () => {
           }
         />
         <Route
-          path="/table/:tableId/order-id/:elId"
+          path="/table/:tableId/:elId"
           element={
             <Menu
               add={handleAddClick}
@@ -117,7 +117,7 @@ const App = () => {
           }
         />
         <Route
-          path="/table/:tableId/:type"
+          path="/table/:tableId/foodcategory/:type"
           element={
             <GetFoodByCategory
               addFood={handleAddClick}

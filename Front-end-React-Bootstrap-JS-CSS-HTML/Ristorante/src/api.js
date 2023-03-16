@@ -37,6 +37,9 @@ export const getOrderDTO = async (type) => {
       `${BASE_URL_USERS}/orders/orderdto/get?flag=false` 
     );
     const data = await response.json();
+    if(data===[]){
+      return console.log("Ciao ciao");
+    }
     return { ok: response.ok, data: data };
   } catch (error) {
     return { ok: false, data: error };

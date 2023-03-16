@@ -14,7 +14,10 @@ export const Drink = ({ drink, addDrink }) => {
 
   return (
     <>
-      <Card className="c_task mt-5" style={{ width: "18rem" }}>
+      <Card
+        className="c_task mt-5  bg-dark text-light"
+        style={{ width: "18rem" }}
+      >
         <Card.Img
           variant="top"
           src={drink.img}

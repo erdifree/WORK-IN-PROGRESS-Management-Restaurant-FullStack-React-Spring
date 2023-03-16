@@ -13,6 +13,16 @@ import { Link } from "react-router-dom";
 export const Sidebar = ({ }) => {
   const [show, setShow] = useState(true);
 
+  const autenticazione=(param)=>{
+    const pin= [1,4,1,8]
+    if(param===pin){
+      return true
+    }
+    else {
+      return false;
+    }
+  }
+
   return (
     <>
       <Navbar bg="dark" className=" justify-content-between  fixed-top mb-5">

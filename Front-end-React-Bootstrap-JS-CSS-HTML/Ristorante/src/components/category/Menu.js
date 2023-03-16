@@ -22,6 +22,7 @@ import Dessert from "../img/dessert.jpg";
 import LogoDessertInsert from "../img/LogoDessertInsert.jpg";
 import Cart from "../Cart";
 import { ModalInsert } from "../ModalInsert";
+import { BiArrowBack } from "react-icons/bi";
 export const Menu = ({ edit, add, del, cartProducts, reset }) => {
   const { tableId } = useParams();
   const { elId } = useParams();
@@ -162,8 +163,22 @@ export const Menu = ({ edit, add, del, cartProducts, reset }) => {
               </Card.Body>
             </Card>
           </Col>
+          <Row className=" d-flex justify-content-center fixed-bottom">
+            <Col className=" d-flex justify-content-center">
+              <Button
+                className=" text-light btn-sm  bg-black btn-outline-dark mb-5"
+                size={"32px"}
+                onClick={() => {
+                  navigate("/admin");
+                }}
+              >
+                <BiArrowBack size={"32px"} />
+                Back
+              </Button>
+            </Col>
+          </Row>
         </Row>
-      ) : (
+      ) : { elId } === undefined ? (
         <Row className=" d-flex  justify-content-between justify-content-evenly flex-wrap ">
           <Cart
             add={add}
@@ -175,7 +190,7 @@ export const Menu = ({ edit, add, del, cartProducts, reset }) => {
           />
           <Col xs={12} md={6} lg={4}>
             <Link
-              to={`/table/${tableId}/antipasto`}
+              to={`/table/${tableId}/foodcategory/anti`}
               className=" text-decoration-none text-reset text-center"
             >
               <Card style={{ width: "18rem" }} className="my-5">
@@ -189,7 +204,7 @@ export const Menu = ({ edit, add, del, cartProducts, reset }) => {
 
           <Col xs={12} md={6} lg={4}>
             <Link
-              to={`/table/${tableId}/primo`}
+              to={`/table/${tableId}/foodcategory/primo`}
               className=" text-decoration-none text-reset text-center"
             >
               <Card style={{ width: "18rem" }} className="my-5">
@@ -202,7 +217,7 @@ export const Menu = ({ edit, add, del, cartProducts, reset }) => {
           </Col>
           <Col xs={12} md={6} lg={4}>
             <Link
-              to={`/table/${tableId}/secondo`}
+              to={`/table/${tableId}/foodcategory/secondo`}
               className=" text-decoration-none text-reset text-center"
             >
               <Card style={{ width: "18rem" }} className="my-5">
@@ -215,7 +230,91 @@ export const Menu = ({ edit, add, del, cartProducts, reset }) => {
           </Col>
           <Col xs={12} md={6} lg={4}>
             <Link
-              to={`/table/${tableId}/dessert`}
+              to={`/table/${tableId}/foodcategory/dessert`}
+              className=" text-decoration-none text-reset text-center"
+            >
+              <Card
+                style={{ width: "18rem", height: "16rem" }}
+                className="my-5"
+              >
+                <Card.Img
+                  variant="top"
+                  src={Dessert}
+                  style={{ width: "18rem", height: "16rem" }}
+                />
+                <Card.Body>
+                  <Card.Title>Dessert</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Link
+              to={`/table/${tableId}/drinkscategory`}
+              className=" text-decoration-none text-reset text-center"
+            >
+              <Card style={{ width: "18rem" }} className="my-5">
+                <Card.Img variant="top" src={Bevande} />
+                <Card.Body>
+                  <Card.Title>Wine&Drink</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+          </Col>
+        </Row>
+      ) : (
+        <Row className=" d-flex  justify-content-between justify-content-evenly flex-wrap ">
+          <Cart
+            add={add}
+            del={del}
+            cartProducts={cartProducts}
+            tableId={tableId}
+            reset={reset}
+            elId={elId}
+          />
+          <Col xs={12} md={6} lg={4}>
+            <Link
+              to={`/table/${tableId}/foodcategory/antipasto`}
+              className=" text-decoration-none text-reset text-center"
+            >
+              <Card style={{ width: "18rem" }} className="my-5">
+                <Card.Img variant="top" src={Antipasto} />
+                <Card.Body>
+                  <Card.Title>Antipasti</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+          </Col>
+
+          <Col xs={12} md={6} lg={4}>
+            <Link
+              to={`/table/${tableId}/foodcategory/primo`}
+              className=" text-decoration-none text-reset text-center"
+            >
+              <Card style={{ width: "18rem" }} className="my-5">
+                <Card.Img variant="top" src={Primo} />
+                <Card.Body>
+                  <Card.Title>Primi Piatti</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Link
+              to={`/table/${tableId}/foodcategory/secondo`}
+              className=" text-decoration-none text-reset text-center"
+            >
+              <Card style={{ width: "18rem" }} className="my-5">
+                <Card.Img variant="top" src={Secondo} />
+                <Card.Body>
+                  <Card.Title>Secondi Piatti</Card.Title>
+                </Card.Body>
+              </Card>
+            </Link>
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            <Link
+              to={`/table/${tableId}/foodcategory/dessert`}
               className=" text-decoration-none text-reset text-center"
             >
               <Card

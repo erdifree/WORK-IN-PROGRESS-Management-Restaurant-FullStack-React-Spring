@@ -163,8 +163,8 @@ export const ModalInsert = ({ showModal, closeModal, type }) => {
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="type">
-                <Form.Label>{type}</Form.Label>
-                <Form.Control
+            
+                <Form.Control hidden={true}
                   type="text"
                   value={(inputState.type = type)}
                   onChange={(e) => {

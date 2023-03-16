@@ -1,15 +1,10 @@
 import { Button, Card } from "react-bootstrap";
-import {
-  BsFillTrashFill,
-  BsPencilFill,
-  BsClipboardCheck,
-  BsClipboardX,
-} from "react-icons/bs";
-import { OrderList } from "../OrderCategory/OrderList";
+import { BsFillPencilFill } from "react-icons/bs";
+
 import imgTavolo from "../img/tavolo.avif";
-import { Col } from "react-bootstrap";
+
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const Table = ({ table }) => {
   const [stateButton, setStateButton] = useState(true);
@@ -30,7 +25,9 @@ export const Table = ({ table }) => {
     const result = table.ordersSet.map((el) => {
       console.log(el.payed);
       if (el.payed === false) {
-        navigate(`/table/${table.id}/order-id/${el.id}`);
+        const ORDERID = localStorage.setItem("OrderID", el.id);
+        console.log("Log orderrrrrrrrr local", ORDERID);
+        navigate(`/table/${table.id}/${el.id}`); /*/${el.id}*/
       }
     });
   };
@@ -46,14 +43,16 @@ export const Table = ({ table }) => {
         <Card className="c_task" style={{ width: "18rem" }}>
           <Card.Img variant="top" src={imgTavolo} />
           <Card.Body>
-            <h3>{table.name}
-            <Button
-              hidden={stateButton}
-              onClick={funcedit}
-              className="btn btn-sm"
-            >
-              <BsClipboardCheck className="text-light" size={"10px"} />
-            </Button></h3>
+            <h3>
+              {table.name}
+              <Button
+                hidden={stateButton}
+                onClick={funcedit}
+                className="btn btn-sm bg-light btn-outline-light mb-3"
+              >
+                <BsFillPencilFill className="text-dark " size={"20px"} />
+              </Button>
+            </h3>
           </Card.Body>
         </Card>
       </Link>

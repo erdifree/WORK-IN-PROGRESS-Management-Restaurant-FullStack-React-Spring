@@ -8,11 +8,11 @@ export const Food = ({ food, addFood }) => {
   console.log("Sono addFood del food", { addFood });
   return (
     <>
-      <Card className="c_task mt-5" style={{ width: "18rem" }}>
+      <Card className="c_task mt-5 bg-dark text-light" style={{ width: "18rem" }}>
         <Card.Img
           variant="top"
           src={food.img}
-          style={{ width: "18rem", height: "12rem" }}
+          style={{ width: "100%", height: "12rem" }}
         />
         <Card.Body>
           <div className=" text-center">

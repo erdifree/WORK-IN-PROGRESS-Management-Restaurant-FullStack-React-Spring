@@ -11,60 +11,45 @@ import Table from "react-bootstrap/Table";
 import { Row, Col } from "react-bootstrap";
 import LogoOrdineCassa from "../img/LogoOrdineCassa.jpg";
 import { useState } from "react";
-export const Order = ({ getOrderList, deleteOrder, dataDto, updateDto }) => {
+export const Order = ({
+  getOrderList,
+  deleteOrder,
+  dataDto,
+  updatePayDto,
+  loadOrdersDTO,
+}) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  console.log("ORDER DTO SINGOLO", dataDto);
+ 
   console.log("ORDER SINGOLO", getOrderList.id);
   const flag = false;
+   const ORDERID = localStorage.setItem("OrderID", getOrderList.id);
+   console.log("Log orderrrrrrrrr local", ORDERID);
   return (
     <>
-      {getOrderList.payed === flag ? (
-        <Card className="c_task " style={{ width: "18rem" }}>
-          <Button
-            className=" btn btn-dark accordion-button "
-            onClick={handleShow}
-          >
-            <Card.Img variant="top" src={LogoOrdineCassa} />
+      
+        <td>{getOrderList.id}</td>
+        <td>{getOrderList.localDate}</td>
+        <td>
+          <Button variant="light">
+            <BsFillTrashFill
+              onClick={() => {
+                deleteOrder(getOrderList.id);
+              }}
+            />
           </Button>
-          <Card.Body>
-            <h4 className=" text-center">
-              Ordine Tavolo N: {dataDto.table_id}
-            </h4>
-            <ModalOrderDTO
-              dataDto={dataDto}
-              updateDto={updateDto}
+
+          <Button variant="light" >
+            <ModalOrder
+              getOrder={getOrderList}
               show={show}
               handleShow={handleShow}
               handleClose={handleClose}
             />
-          </Card.Body>
-        </Card>
-      ) : (
-        <tr className=" text-bg-light">
-          <td>{getOrderList.id}</td>
-          <td>{getOrderList.localDate}</td>
-          <td>
-            <Button variant="light">
-              <BsFillTrashFill
-                onClick={() => {
-                  deleteOrder(getOrderList.id);
-                }}
-              />
-            </Button>
-
-            <Button variant="light">
-              <ModalOrder
-                getOrder={getOrderList}
-                show={show}
-                handleShow={handleShow}
-                handleClose={handleClose}
-              />
-            </Button>
-          </td>
-        </tr>
-      )}
+          </Button>
+        </td>
+    
     </>
   );
 };

@@ -43,7 +43,8 @@ public class OrderController {
         List<Orders> result = orderRepository.findAll();
         List<Orders> ordersList= new ArrayList<>();
         if (result.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ("Orders not found"));
+            return ordersList;
+         //   throw new ResponseStatusException(HttpStatus.NOT_FOUND, ("Orders not found"));
         } else {
             for (Orders order : result) {
                 if (order.isPayed() == str) {
@@ -55,11 +56,12 @@ public class OrderController {
     }
 
     @GetMapping("/orderdto/get")
-    public List<OrderDTO> getOrderDTO(@RequestParam (name="flag",required = false)boolean str){
+    public List<OrderDTO> getOrderDTO(@RequestParam (name="flag",required = false)boolean str)throws  ResponseStatusException{
         List<Orders> result = orderRepository.findByIsPayed(str);
         List<OrderDTO> ordersList= new ArrayList<>();
       if (result.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, ("Orders not found"));
+           // throw new ResponseStatusException(HttpStatus.NOT_FOUND, ("Orders not found"));
+         return ordersList;
         } else {
             int index=0;
             for (Orders order : result) {
