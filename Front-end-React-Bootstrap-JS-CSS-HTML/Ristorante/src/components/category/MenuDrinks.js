@@ -124,7 +124,7 @@ export const MenuDrinks = ({ edit, add, del, cartProducts, reset }) => {
                   navigate("/admin");
                 }}
               >
-               Admin
+              Go to Admin 
               </Button>
             </Col>
           </Row>

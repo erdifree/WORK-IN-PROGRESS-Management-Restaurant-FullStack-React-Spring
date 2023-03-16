@@ -9,6 +9,7 @@ import { AiFillSetting } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import "../components/css/footerStyle.css"
 
 export const Sidebar = ({ }) => {
   const [show, setShow] = useState(true);
@@ -24,8 +25,8 @@ export const Sidebar = ({ }) => {
   }
 
   return (
-    <>
-      <Navbar bg="dark" className=" justify-content-between  fixed-top mb-5">
+    <header>
+      <Navbar bg="dark" className=" justify-content-between  fixed-top mb-5" >
         <Col sx={12} lg={2} className="mt-2">
           <Link to="/">
             <Button variant="outline-success">
@@ -52,6 +53,6 @@ export const Sidebar = ({ }) => {
           </Link>
         </Col>
       </Navbar>
-    </>
+    </header>
   );
 };
