@@ -7,23 +7,29 @@
   }
 }
 
-#navbar {
+
+
+.footer {
   /* This section calls the slideInFromLeft animation we defined above */
   animation: 1s ease-out 0s 1 slideInFromLeft;
-
   background: #333;
-  padding: 30px;
-  opacity: 0.5
+  padding: 5px;
+
 }
+
+
 
 /* Added for aesthetics */
 #navbar {
   margin: 0;
   font-family: "Segoe UI", Arial, Helvetica, Sans Serif;
 }
-a {
-  text-decoration: none;
-  display: inline-block;
-  margin-right: 10px;
-  color: #fff;
+
+.cccc{
+
+  object-fit: contain;
+  mix-blend-mode: color-burn;
+  background-color: transparent;
+  background-image: none;
+  
 }
