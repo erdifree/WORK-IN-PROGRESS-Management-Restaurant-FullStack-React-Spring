@@ -1,8 +1,6 @@
 package Erdison.Dosti.Ristorante;
 
-import Erdison.Dosti.Ristorante.Entity.Role;
-import Erdison.Dosti.Ristorante.Entity.User;
-import Erdison.Dosti.Ristorante.service.UserService;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
