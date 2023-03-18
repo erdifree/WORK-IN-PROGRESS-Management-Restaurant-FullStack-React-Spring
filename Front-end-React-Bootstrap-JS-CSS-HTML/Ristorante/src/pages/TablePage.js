@@ -19,7 +19,7 @@ export const TablePage = () => {
   return (
     <>
       <Sidebar />
-      <TableList table={data} />
+      <TableList table={data} loadTable={loadTable} />
     </>
   );
 };

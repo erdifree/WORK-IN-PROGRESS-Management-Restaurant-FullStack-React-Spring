@@ -2,12 +2,14 @@ import { Button, Card } from "react-bootstrap";
 import { BsFillPencilFill } from "react-icons/bs";
 
 import imgTavolo from "../img/tavolo.avif";
+import imgTavoloRiservato from "../img/riservato.avif";
 
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export const Table = ({ table }) => {
+export const Table = ({ table, loadTable }) => {
   const [stateButton, setStateButton] = useState(true);
+  const [img, setImg] = useState(imgTavolo);
   console.log("sono il tavolo", table.ordersSet);
   const navigate = useNavigate();
 
@@ -15,8 +17,10 @@ export const Table = ({ table }) => {
     const result = table.ordersSet.map((el) => {
       console.log(el.payed);
       if (el.payed === false) {
-        setStateButton(false);
+        setImg(imgTavoloRiservato);
         event.preventDefault();
+        setStateButton(false);
+        loadTable()
       }
     });
   };
@@ -27,7 +31,7 @@ export const Table = ({ table }) => {
       if (el.payed === false) {
         const ORDERID = localStorage.setItem("OrderID", el.id);
         console.log("Log orderrrrrrrrr local", ORDERID);
-        navigate(`/table/${table.id}/${el.id}`); /*/${el.id}*/
+        navigate(`/table/${table.id}/${el.id}`);
       }
     });
   };
@@ -41,7 +45,11 @@ export const Table = ({ table }) => {
         onClick={func}
       >
         <Card className="c_task" style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={imgTavolo} />
+          <Card.Img
+            variant="top"
+            src={img}
+            style={{ width: "18rem", height: "12rem" }}
+          />
           <Card.Body>
             <h3>
               {table.name}

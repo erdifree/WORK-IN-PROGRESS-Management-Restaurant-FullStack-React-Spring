@@ -1,6 +1,6 @@
 import { Row, Col } from "react-bootstrap";
 import { Table } from "./Table";
-export const TableList = ({ table = [] }) => {
+export const TableList = ({ table = [], loadTable }) => {
   return (
     <Row className="gy-3 mt-5 pt-5">
       {table.map((el) => {
@@ -12,7 +12,7 @@ export const TableList = ({ table = [] }) => {
             lg={6}
             className=" d-flex justify-content-between"
           >
-            <Table table={el} />
+            <Table table={el} loadTable={loadTable} />
           </Col>
         );
       })}
